@@ -15,17 +15,23 @@ from disk. Pages work on phones, so farmers can use them in the field.
 
 ## Contents
 
+The main menu has three buttons. Each section has a short row of sub-links.
+
+| Menu | Path | Purpose |
+|---|---|---|
+| **About** | `about.html` | Rationale, gap analysis, network structure, roadmap, how to join |
+| **How to Use** | `how-to.html` | Steps for farmers, researchers and partners |
+| | `guidelines/` | Farmer guideline PB-G-01 in `en` (reference), `ko`, `ja`, `zh-hans` (drafts) + translation status |
+| | `stages.html` | BBCH stage scales, thresholds, management events |
+| | `submit.html` | Observation entry form (offline queue on device, GPS button, CSV download) |
+| **PhenoBase** | `index.html` | Database overview: quick search, contents, records by country |
+| | `search.html` | Query form; record list, summary by year, summary by site with trend; CSV export |
+| | `record.html?id=…` | Single record view, same stage in other years, all stages that season |
+| | `crops.html` | Crop reference list (EN / KO / JA / ZH names, scientific name, stage scale) |
+| | `data.html` | Downloads, field dictionary, Darwin Core mapping, QC, privacy, licence |
+
 | Path | Purpose |
 |---|---|
-| `index.html` | Home: quick search, database summary, news |
-| `search.html` | Query form; record list, summary by year, summary by site with trend; CSV export |
-| `record.html?id=…` | Single record view, same stage in other years, all stages that season |
-| `crops.html` | Crop reference list (EN / KO / JA / ZH names, scientific name, stage scale) |
-| `stages.html` | BBCH stage scales, thresholds, management events |
-| `guidelines/` | Farmer guideline PB-G-01 in `en` (reference), `ko`, `ja`, `zh-hans` (drafts) + translation status |
-| `submit.html` | Observation entry form (offline queue on device, GPS button, CSV download) |
-| `data.html` | Downloads, field dictionary, Darwin Core mapping, QC, privacy, licence |
-| `about.html` | Rationale, gap analysis, network structure, roadmap, how to join |
 | `data/reference.json` | **Single source** for crops, stage scales, countries, guideline languages |
 | `data/observations.csv` | Observation records (currently **synthetic demo data**) |
 | `tools/build_data.py` | Builds `data/reference.js` and the demo observation files |
@@ -37,14 +43,15 @@ from disk. Pages work on phones, so farmers can use them in the field.
 # after editing data/reference.json (or the demo generator)
 python3 tools/build_data.py
 
-# after adding a page or changing the menu/footer in tools/stamp_layout.py
+# after adding a page or changing the menu, sub-links or footer in tools/stamp_layout.py
 python3 tools/stamp_layout.py
 
 # preview
 python3 -m http.server 8000   # then open http://localhost:8000/
 ```
 
-New pages need `<!--#masthead--><!--/masthead-->` and `<!--#footer--><!--/footer-->` markers.
+New pages need `<!--#masthead--><!--/masthead-->` and `<!--#footer--><!--/footer-->` markers and an entry in
+`SECTION_OF` in `tools/stamp_layout.py`. Guideline documents also carry `<!--#langbar--><!--/langbar-->`.
 
 ## Demonstration data
 

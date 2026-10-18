@@ -11,129 +11,46 @@
 <div id="wrap">
 <!--#masthead-->
 <div id="masthead">
-<div class="name"><a href="index.html">PhenoBase</a></div>
-<div class="tagline">Asian Farmer Phenology Database &middot; Fruit and Field Crops
-<span class="cjk">&middot; 아시아 농업인 작물 생물계절 데이터베이스 &middot; アジア農業者作物フェノロジーDB &middot; 亚洲农民作物物候数据库</span></div>
+<a class="name" href="index.html">PhenoBase</a>
+<span class="tagline">Asian Farmer Phenology Database</span>
+<div id="menu"><a href="about.html">About</a><a href="how-to.html">How to Use</a><a href="index.html" class="here">PhenoBase</a></div>
 </div>
-<div id="menu"><a href="index.html" class="here">Home</a><span class="sep">|</span><a href="search.html">Search records</a><span class="sep">|</span><a href="crops.html">Crops</a><span class="sep">|</span><a href="stages.html">Stage codes</a><span class="sep">|</span><a href="guidelines/index.html">Farmer guidelines</a><span class="sep">|</span><a href="submit.html">Submit observations</a><span class="sep">|</span><a href="data.html">Data &amp; standards</a><span class="sep">|</span><a href="about.html">About</a></div>
+<div id="sub"><b>Overview</b> <a href="search.html">Search</a> <a href="crops.html">Crops</a> <a href="data.html">Data</a></div>
 <!--/masthead-->
-<div id="crumbs">You are here: <b>Home</b></div>
 <div id="content">
 
-<div class="notice demo"><b>Prototype.</b> This release contains <b>synthetic demonstration records</b> only, so the
-query and export functions can be tested. No real observations have been loaded yet. Demo records are marked
-<span class="badge demo">DEMO</span>.</div>
+<h1>PhenoBase</h1>
+<p>Dates of bud burst, flowering, ripening, heading and harvest of fruit and field crops, recorded by farmers across
+East, Southeast and South Asia with international <a href="stages.html">BBCH stage codes</a>.</p>
 
-<div class="cols">
-<div class="main">
+<div class="notice demo"><b>Prototype:</b> all records are synthetic demonstration data, marked <span class="badge demo">DEMO</span>.</div>
 
-<h1>PhenoBase: Asian Farmer Phenology Database</h1>
-<p>PhenoBase is a database of <b>when crops reach their life-cycle stages</b>, such as bud burst, flowering,
-ripening, heading and harvest. Farmers record these stages in their own orchards and fields across East, Southeast
-and South Asia. It covers <b>fruit crops</b> (apple, pear, persimmon, citrus, mango, lychee, durian and others)
-and <b>field crops</b> (rice, wheat, soybean, vegetables and root crops).</p>
-<p>Stages are recorded with the international <a href="stages.html">BBCH codes</a>, so records from Korea,
-Japan, Viet Nam, India and other countries can be compared with each other and with European and
-North American phenology networks.</p>
-
-<h2>Quick search</h2>
-<form class="q" action="search.html" method="get">
-<table class="form">
-<tr><td class="l"><label for="q-crop">Crop</label></td><td><select id="q-crop" name="crop" class="long"><option value="">Any crop</option></select></td></tr>
-<tr><td class="l"><label for="q-cc">Country</label></td><td><select id="q-cc" name="cc" class="long"><option value="">Any country</option></select></td></tr>
-<tr><td class="l"><label for="q-stage">Stage</label></td><td><select id="q-stage" name="stage" class="long"><option value="">Any stage</option></select></td></tr>
-<tr><td class="l"></td><td><input type="submit" class="primary" value="Search"> &nbsp; <a href="search.html">Advanced search</a></td></tr>
-</table>
+<form action="search.html" method="get">
+<select name="crop" id="q-crop"></select>
+<select name="cc" id="q-cc"></select>
+<select name="stage" id="q-stage"></select>
+<input type="submit" value="Search"> <a href="search.html">Advanced</a>
 </form>
 
-<h2>Database summary</h2>
-<div class="tw"><table class="data" id="summary">
+<h2>Contents</h2>
+<div class="tw"><table class="data">
 <tbody>
-<tr><th>Observation records</th><td class="num" id="s-rec">&ndash;</td></tr>
-<tr><th>Observation sites</th><td class="num" id="s-site">&ndash;</td></tr>
-<tr><th>Countries with records</th><td class="num" id="s-cc">&ndash;</td></tr>
-<tr><th>Crops with records / in reference list</th><td class="num" id="s-crop">&ndash;</td></tr>
-<tr><th>Years covered</th><td class="num" id="s-yr">&ndash;</td></tr>
-<tr><th>Data version</th><td class="num" id="s-ver">&ndash;</td></tr>
+<tr><th>Records</th><td class="num" id="s-rec">&ndash;</td></tr>
+<tr><th>Sites</th><td class="num" id="s-site">&ndash;</td></tr>
+<tr><th>Countries</th><td class="num" id="s-cc">&ndash;</td></tr>
+<tr><th>Crops</th><td class="num" id="s-crop">&ndash;</td></tr>
+<tr><th>Years</th><td class="num" id="s-yr">&ndash;</td></tr>
+<tr><th>Version</th><td class="num" id="s-ver">&ndash;</td></tr>
 </tbody>
 </table></div>
-<noscript><p class="muted">Summary needs JavaScript. The full data set can be downloaded from <a href="data.html">Data &amp; standards</a>.</p></noscript>
+<noscript><p class="muted">Needs JavaScript. Download the data from <a href="data.html#download">Data</a>.</p></noscript>
 
-<h3>Records by country and crop group</h3>
+<h2>Records by country</h2>
 <div class="tw" id="bycountry"></div>
-
-<h2>Why this database</h2>
-<ul>
-<li>International phenology databases hold <b>little data from Asia</b>, and very little from Korea.</li>
-<li>National phenology programmes in the region mainly track <b>wild species, animals and insects</b>.
-Cultivated fruit and field crops are mostly missing.</li>
-<li>Farmers already notice when their trees bud, flower and ripen. Writing these dates down in a
-<b>standard way</b> builds a long-term record that is useful to the farmer, to extension services and to
-climate research.</li>
-</ul>
-<p><a href="about.html">Read more about the project &raquo;</a></p>
-
-<h2>News</h2>
-<table class="data full">
-<thead><tr><th>Date</th><th>Item</th></tr></thead>
-<tbody>
-<tr><td class="code">2026-10-18</td><td>Prototype website released with demonstration data, BBCH stage reference and observation form.</td></tr>
-<tr><td class="code">2026-10-18</td><td>Draft farmer guideline published in English, Korean, Japanese and Simplified Chinese. <a href="guidelines/index.html">Translators wanted</a> for 15 more languages.</td></tr>
-<tr><td class="code">2026-10-18</td><td>Call for national coordinators and pilot farmer groups. See <a href="about.html#join">How to join</a>.</td></tr>
-</tbody>
-</table>
-
-</div><!-- /main -->
-
-<div class="side">
-<div class="box"><div class="bh">For farmers</div><div class="bb">
-<ul>
-<li><a href="guidelines/index.html">Observation guideline</a><br>
-<small><a href="guidelines/en.html">English</a> &middot; <a href="guidelines/ko.html">한국어</a> &middot;
-<a href="guidelines/ja.html">日本語</a> &middot; <a href="guidelines/zh-hans.html">简体中文</a></small></li>
-<li><a href="guidelines/en.html#sheet">Printable recording sheet</a></li>
-<li><a href="submit.html">Submit observations</a></li>
-<li><a href="stages.html">Stage code reference</a></li>
-</ul>
-</div></div>
-
-<div class="box"><div class="bh">For researchers</div><div class="bb">
-<ul>
-<li><a href="search.html">Search records</a></li>
-<li><a href="search.html?view=site">Summary by site and trend</a></li>
-<li><a href="data.html#download">Download data (CSV)</a></li>
-<li><a href="data.html#fields">Field dictionary</a></li>
-<li><a href="data.html#license">Licence and citation</a></li>
-</ul>
-</div></div>
-
-<div class="box"><div class="bh">For partners</div><div class="bb">
-<ul>
-<li><a href="about.html#network">Network structure</a></li>
-<li><a href="about.html#join">Become a country node</a></li>
-<li><a href="guidelines/index.html#translate">Translate the guideline</a></li>
-<li><a href="https://github.com/joshua133school-stack/phenobase">Source code</a></li>
-</ul>
-</div></div>
-
-<div class="box"><div class="bh">Scope</div><div class="bb">
-<b id="n-crops">40</b> crops in reference list<br>
-<b>4</b> stage scales (BBCH)<br>
-<b>18</b> target countries<br>
-<b>19</b> guideline languages planned
-</div></div>
-</div><!-- /side -->
-</div><!-- /cols -->
 
 </div>
 <!--#footer-->
-<div id="footer">
-PhenoBase release 0.1 (prototype) &middot; Page updated 2026-10-18 &middot;
-<a href="data.html#license">Licence &amp; citation</a> &middot;
-<a href="about.html#contact">Contact</a> &middot;
-<a href="https://github.com/joshua133school-stack/phenobase/issues">Report a problem</a> &middot;
-Guidelines: <a href="guidelines/en.html">English</a> | <a href="guidelines/ko.html">한국어</a> | <a href="guidelines/ja.html">日本語</a> | <a href="guidelines/zh-hans.html">简体中文</a>
-</div>
+<div id="footer">PhenoBase 0.1 (prototype) &middot; <a href="data.html#license">Licence</a> &middot; <a href="https://github.com/joshua133school-stack/phenobase/issues">Contact</a></div>
 <!--/footer-->
 </div>
 <script src="data/reference.js"></script>
@@ -158,9 +75,7 @@ Guidelines: <a href="guidelines/en.html">English</a> | <a href="guidelines/ko.ht
   set("s-cc", Object.keys(ccs).length + " / " + ref.countries.length);
   set("s-crop", Object.keys(crops).length + " / " + ref.crops.length);
   set("s-yr", R.length ? yMin + "&ndash;" + yMax : "&ndash;");
-  set("s-ver", (window.PB_OBS && window.PB_OBS.demo ? '<span class="badge demo">DEMO</span> ' : "") +
-      (window.PB_OBS ? window.PB_OBS.generated : ""));
-  set("n-crops", ref.crops.length);
+  set("s-ver", (window.PB_OBS && window.PB_OBS.demo ? "DEMO " : "") + (window.PB_OBS ? window.PB_OBS.generated : ""));
 
   // country x crop group cross-table
   var groups = [], tab = {};
@@ -183,8 +98,7 @@ Guidelines: <a href="guidelines/en.html">English</a> | <a href="guidelines/ko.ht
     });
     h += '<td class="num"><b>' + tot + "</b></td></tr>";
   });
-  h += "</tbody></table>";
-  document.getElementById("bycountry").innerHTML = h;
+  document.getElementById("bycountry").innerHTML = h + "</tbody></table>";
 })();
 </script>
 </body>

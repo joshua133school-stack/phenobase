@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crops - PhenoBase</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="wrap">
+<!--#masthead-->
+<div id="masthead">
+<div class="name"><a href="index.html">PhenoBase</a></div>
+<div class="tagline">Asian Farmer Phenology Database &middot; Fruit and Field Crops
+<span class="cjk">&middot; 아시아 농업인 작물 생물계절 데이터베이스 &middot; アジア農業者作物フェノロジーDB &middot; 亚洲农民作物物候数据库</span></div>
+</div>
+<div id="menu"><a href="index.html">Home</a><span class="sep">|</span><a href="search.html">Search records</a><span class="sep">|</span><a href="crops.html" class="here">Crops</a><span class="sep">|</span><a href="stages.html">Stage codes</a><span class="sep">|</span><a href="guidelines/index.html">Farmer guidelines</a><span class="sep">|</span><a href="submit.html">Submit observations</a><span class="sep">|</span><a href="data.html">Data &amp; standards</a><span class="sep">|</span><a href="about.html">About</a></div>
+<!--/masthead-->
+<div id="crumbs">You are here: <a href="index.html">Home</a> &gt; <b>Crops</b></div>
+<div id="content">
+
+<h1>Crop reference list</h1>
+<p>The crops PhenoBase accepts observations for, with common names in English, Korean, Japanese and Chinese, the
+accepted scientific name and the <a href="stages.html">stage scale</a> used to record them. To add a crop, open a request on the
+<a href="https://github.com/joshua133school-stack/phenobase/issues">issue tracker</a> with the scientific name and the countries where it will be observed.</p>
+
+<p class="small"><b>Show group:</b> <span id="groups"></span></p>
+
+<div class="tw" id="tbl"><noscript><p class="err">This table is built from <a href="data/reference.json">data/reference.json</a> and needs JavaScript. The JSON file can be read directly.</p></noscript></div>
+
+<p class="small muted">Scientific names are working names, to be checked against Plants of the World Online (POWO) by the taxonomic editor before release 1.0. Names in other languages are the common market or
+agricultural names; regional names should be added by country coordinators.</p>
+
+</div>
+<!--#footer-->
+<div id="footer">
+PhenoBase release 0.1 (prototype) &middot; Page updated 2026-10-18 &middot;
+<a href="data.html#license">Licence &amp; citation</a> &middot;
+<a href="about.html#contact">Contact</a> &middot;
+<a href="https://github.com/joshua133school-stack/phenobase/issues">Report a problem</a> &middot;
+Guidelines: <a href="guidelines/en.html">English</a> | <a href="guidelines/ko.html">한국어</a> | <a href="guidelines/ja.html">日本語</a> | <a href="guidelines/zh-hans.html">简体中文</a>
+</div>
+<!--/footer-->
+</div>
+<script src="data/reference.js"></script>
+<script src="data/observations.js"></script>
+<script src="assets/pb.js"></script>
+<script>
+(function () {
+  var P = PB.params(), e = PB.esc, ref = PB.ref;
+  var nRec = {}, sites = {};
+  PB.records().forEach(function (r) {
+    nRec[r.crop_id] = (nRec[r.crop_id] || 0) + 1;
+    (sites[r.crop_id] = sites[r.crop_id] || {})[r.site_id] = 1;
+  });
+  var groups = [];
+  ref.crops.forEach(function (c) { if (groups.indexOf(c.group) < 0) groups.push(c.group); });
+  document.getElementById("groups").innerHTML = (P.group ? '<a href="crops.html">All</a>' : "<b>All</b>") + " | " +
+    groups.map(function (g) {
+      return g === P.group ? "<b>" + e(g) + "</b>" : '<a href="crops.html?group=' + encodeURIComponent(g) + '">' + e(g) + "</a>";
+    }).join(" | ");
+
+  var h = '<table class="data full"><thead><tr><th>ID</th><th>English</th><th>한국어</th><th>日本語</th><th>中文</th>' +
+    '<th>Scientific name</th><th>Family</th><th>Stage scale</th><th class="num">Sites</th><th class="num">Records</th></tr></thead><tbody>';
+  groups.forEach(function (g) {
+    if (P.group && g !== P.group) return;
+    h += '<tr class="group"><td colspan="10">' + e(g) + "</td></tr>";
+    ref.crops.forEach(function (c) {
+      if (c.group !== g) return;
+      var n = nRec[c.id] || 0, s = sites[c.id] ? Object.keys(sites[c.id]).length : 0;
+      h += '<tr><td class="code">' + c.id + "</td><td>" + e(c.en) + "</td><td>" + e(c.ko) + "</td><td>" + e(c.ja) + "</td><td>" + e(c.zh) +
+        "</td><td><i>" + e(c.sci) + "</i></td><td>" + e(c.family) + '</td><td class="code"><a href="stages.html#' + c.scale + '">' + c.scale + "</a></td>" +
+        '<td class="num">' + (s || "&middot;") + '</td><td class="num">' + (n ? '<a href="search.html?crop=' + c.id + '">' + n + "</a>" : "&middot;") + "</td></tr>";
+    });
+  });
+  document.getElementById("tbl").innerHTML = h + "</tbody></table>";
+})();
+</script>
+</body>
+</html>

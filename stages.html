@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stage codes - PhenoBase</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="wrap">
+<!--#masthead-->
+<div id="masthead">
+<div class="name"><a href="index.html">PhenoBase</a></div>
+<div class="tagline">Asian Farmer Phenology Database &middot; Fruit and Field Crops
+<span class="cjk">&middot; 아시아 농업인 작물 생물계절 데이터베이스 &middot; アジア農業者作物フェノロジーDB &middot; 亚洲农民作物物候数据库</span></div>
+</div>
+<div id="menu"><a href="index.html">Home</a><span class="sep">|</span><a href="search.html">Search records</a><span class="sep">|</span><a href="crops.html">Crops</a><span class="sep">|</span><a href="stages.html" class="here">Stage codes</a><span class="sep">|</span><a href="guidelines/index.html">Farmer guidelines</a><span class="sep">|</span><a href="submit.html">Submit observations</a><span class="sep">|</span><a href="data.html">Data &amp; standards</a><span class="sep">|</span><a href="about.html">About</a></div>
+<!--/masthead-->
+<div id="crumbs">You are here: <a href="index.html">Home</a> &gt; <b>Stage codes</b></div>
+<div id="content">
+
+<h1>Phenological stage codes (BBCH)</h1>
+<p>PhenoBase records stages with the two-digit <b>BBCH scale</b> (Meier 2018), the international standard used by
+European and other phenology networks. The first digit is the <b>principal stage</b> (for example 6 = flowering) and
+the second digit is the step within it (for example 65 = full flowering). Using the same codes in every country and
+language lets records be compared directly.</p>
+
+<p>Each crop uses one of four <b>stage scales</b>. A scale is the subset of BBCH stages that farmers can reliably
+recognise for that type of crop. Stages marked <span class="star">*</span> are <b>core stages</b>: every
+participating farmer is asked to record these. The other stages are optional.</p>
+
+<div class="toc"><b>Contents</b>
+<ol>
+<li><a href="#principal">Principal stages</a></li>
+<li><a href="#thresholds">Thresholds: first, beginning, full, end</a></li>
+<li id="toc-scales">Stage scales</li>
+<li><a href="#events">Management and weather events</a></li>
+</ol></div>
+
+<h2 id="principal">1. Principal stages</h2>
+<div class="tw"><table class="data">
+<thead><tr><th class="num">Digit</th><th>Principal stage</th><th>Used in PhenoBase for</th></tr></thead>
+<tbody>
+<tr><td class="num">0</td><td>Germination, sprouting, bud development</td><td>Sowing (00), emergence (09), bud burst of fruit trees (07)</td></tr>
+<tr><td class="num">1</td><td>Leaf development</td><td>First leaves unfolded (11)</td></tr>
+<tr><td class="num">2</td><td>Formation of side shoots / tillering</td><td>Tillering of rice and cereals (21)</td></tr>
+<tr><td class="num">3</td><td>Stem elongation / shoot development</td><td>(not used)</td></tr>
+<tr><td class="num">4</td><td>Development of harvestable vegetative parts</td><td>Cabbage heads, bulbs, roots, tubers (41, 49)</td></tr>
+<tr><td class="num">5</td><td>Inflorescence emergence / heading</td><td>Flower buds and panicles (51), heading of cereals (51, 55)</td></tr>
+<tr><td class="num">6</td><td>Flowering</td><td>First flower (60), beginning (61), full (65), end (69)</td></tr>
+<tr><td class="num">7</td><td>Development of fruit</td><td>Fruit set (71)</td></tr>
+<tr><td class="num">8</td><td>Ripening of fruit and seed</td><td>Colour change (81), harvest maturity (87, 89)</td></tr>
+<tr><td class="num">9</td><td>Senescence, start of dormancy</td><td>Leaf fall (93, 97), harvested (99)</td></tr>
+</tbody></table></div>
+
+<h2 id="thresholds">2. Thresholds: first, beginning, full, end</h2>
+<p>The date of a stage is the <b>first day the condition is true for the observed plants as a group</b>
+(the tagged trees, or the marked plot).</p>
+<div class="tw"><table class="data">
+<thead><tr><th>Word in stage name</th><th>Meaning</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td>First</td><td>Seen on at least one observed plant</td><td>60 First flowers open</td></tr>
+<tr><td>Beginning / begins</td><td>About 1 in 10 (10%) of buds, shoots, flowers or plants</td><td>51 Heading begins; 93 Beginning of leaf fall</td></tr>
+<tr><td>Full / half / heading date</td><td>About half (50%) or more</td><td>65 Full flowering; 55 Heading date</td></tr>
+<tr><td>End</td><td>Nearly all (about 90% or more)</td><td>69 End of flowering; 97 End of leaf fall</td></tr>
+<tr><td>Maturity</td><td>The point at which the farmer normally starts the main harvest</td><td>87, 89, 49</td></tr>
+</tbody></table></div>
+
+<div id="scales"><noscript><p class="err">The scale tables are built from <a href="data/reference.json">data/reference.json</a> and need JavaScript.</p></noscript></div>
+
+<h2 id="events">4. Management and weather events</h2>
+<p>These are not BBCH stages, but they explain unusual dates. Write them in the <b>notes</b> field with the date.</p>
+<div class="tw"><table class="data">
+<thead><tr><th>Event</th><th>What to record</th></tr></thead>
+<tbody>
+<tr><td>Transplanting (rice, vegetables)</td><td>Date seedlings were planted in the field</td></tr>
+<tr><td>Pruning, flower or fruit thinning</td><td>Date and what was done</td></tr>
+<tr><td>Protected cultivation</td><td>Greenhouse, rain shelter, heating, frost fans, sprinklers</td></tr>
+<tr><td>Frost, hail, typhoon, heat, drought, flood</td><td>Date and estimated damage (none / light / heavy)</td></tr>
+<tr><td>Flower induction (mango, longan, durian)</td><td>Date and product used (for example potassium chlorate, paclobutrazol)</td></tr>
+<tr><td>Pest or disease outbreak</td><td>Date and name if known</td></tr>
+</tbody></table></div>
+
+<h2>Reference</h2>
+<p class="small">Meier, U. (ed.) (2018). <i>Growth stages of mono- and dicotyledonous plants. BBCH Monograph.</i>
+Julius K&uuml;hn-Institut, Quedlinburg. Freely available from the Open Agrar repository.</p>
+
+</div>
+<!--#footer-->
+<div id="footer">
+PhenoBase release 0.1 (prototype) &middot; Page updated 2026-10-18 &middot;
+<a href="data.html#license">Licence &amp; citation</a> &middot;
+<a href="about.html#contact">Contact</a> &middot;
+<a href="https://github.com/joshua133school-stack/phenobase/issues">Report a problem</a> &middot;
+Guidelines: <a href="guidelines/en.html">English</a> | <a href="guidelines/ko.html">한국어</a> | <a href="guidelines/ja.html">日本語</a> | <a href="guidelines/zh-hans.html">简体中文</a>
+</div>
+<!--/footer-->
+</div>
+<script src="data/reference.js"></script>
+<script src="assets/pb.js"></script>
+<script>
+(function () {
+  var e = PB.esc, ref = PB.ref, keys = Object.keys(ref.scales);
+  var toc = '3. Stage scales<ol type="a">';
+  var h = '<h2 id="scales-h">3. Stage scales</h2>';
+  keys.forEach(function (k) {
+    var s = ref.scales[k];
+    var crops = ref.crops.filter(function (c) { return c.scale === k; }).map(function (c) { return e(c.en); });
+    toc += '<li><a href="#' + k + '">' + e(s.name) + "</a></li>";
+    h += '<h3 id="' + k + '">' + e(s.name) + ' <span class="mono small">[' + k + "]</span></h3>";
+    h += '<p class="small"><b>Basis:</b> ' + e(s.basis) + "<br><b>Crops:</b> " + crops.join(", ") + "</p>";
+    h += '<div class="tw"><table class="data full"><thead><tr><th>Code</th><th></th><th>Stage</th><th>한국어</th><th>日本語</th><th>中文</th><th>How to recognise it</th></tr></thead><tbody>';
+    s.stages.forEach(function (st) {
+      h += '<tr><td class="code"><b>' + st.code + '</b></td><td class="star">' + (st.core ? "*" : "") + "</td><td><b>" + e(st.en) + "</b></td><td>" + e(st.ko) +
+        "</td><td>" + e(st.ja) + "</td><td>" + e(st.zh) + "</td><td>" + e(st.def) + "</td></tr>";
+    });
+    h += "</tbody></table></div>";
+  });
+  document.getElementById("toc-scales").innerHTML = toc + "</ol>";
+  document.getElementById("scales").innerHTML = h;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Record - PhenoBase</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="wrap">
+<!--#masthead-->
+<div id="masthead">
+<div class="name"><a href="index.html">PhenoBase</a></div>
+<div class="tagline">Asian Farmer Phenology Database &middot; Fruit and Field Crops
+<span class="cjk">&middot; 아시아 농업인 작물 생물계절 데이터베이스 &middot; アジア農業者作物フェノロジーDB &middot; 亚洲农民作物物候数据库</span></div>
+</div>
+<div id="menu"><a href="index.html">Home</a><span class="sep">|</span><a href="search.html" class="here">Search records</a><span class="sep">|</span><a href="crops.html">Crops</a><span class="sep">|</span><a href="stages.html">Stage codes</a><span class="sep">|</span><a href="guidelines/index.html">Farmer guidelines</a><span class="sep">|</span><a href="submit.html">Submit observations</a><span class="sep">|</span><a href="data.html">Data &amp; standards</a><span class="sep">|</span><a href="about.html">About</a></div>
+<!--/masthead-->
+<div id="crumbs">You are here: <a href="index.html">Home</a> &gt; <a href="search.html">Search records</a> &gt; <b id="crumb-id">Record</b></div>
+<div id="content">
+<div id="out"><noscript><p class="err">Record pages need JavaScript.</p></noscript></div>
+</div>
+<!--#footer-->
+<div id="footer">
+PhenoBase release 0.1 (prototype) &middot; Page updated 2026-10-18 &middot;
+<a href="data.html#license">Licence &amp; citation</a> &middot;
+<a href="about.html#contact">Contact</a> &middot;
+<a href="https://github.com/joshua133school-stack/phenobase/issues">Report a problem</a> &middot;
+Guidelines: <a href="guidelines/en.html">English</a> | <a href="guidelines/ko.html">한국어</a> | <a href="guidelines/ja.html">日本語</a> | <a href="guidelines/zh-hans.html">简体中文</a>
+</div>
+<!--/footer-->
+</div>
+<script src="data/reference.js"></script>
+<script src="data/observations.js"></script>
+<script src="assets/pb.js"></script>
+<script>
+(function () {
+  var id = PB.params().id || "";
+  var all = PB.records(), r = null, e = PB.esc;
+  for (var i = 0; i < all.length; i++) if (all[i].record_id === id) { r = all[i]; break; }
+  var out = document.getElementById("out");
+  if (!r) {
+    out.innerHTML = '<h1>Record not found</h1><p>No record with ID <code>' + e(id) + '</code>. <a href="search.html">Search records</a>.</p>';
+    return;
+  }
+  document.title = r.record_id + " - PhenoBase";
+  document.getElementById("crumb-id").textContent = r.record_id;
+  var c = PB.crop[r.crop_id] || {}, st = PB.stage(r.stage_scale, r.stage_code) || {}, cc = PB.country[r.country_code] || {};
+  var sc = PB.ref.scales[r.stage_scale] || {};
+  function row(k, v) { return "<tr><th>" + k + "</th><td>" + v + "</td></tr>"; }
+  function sec(t) { return '<tr class="section"><th colspan="2">' + t + "</th></tr>"; }
+
+  var h = "<h1>Observation record " + e(r.record_id) + (r.status === "DEMO" ? ' <span class="badge demo">DEMO</span>' : "") + "</h1>";
+  if (r.status === "DEMO") h += '<div class="notice demo"><b>Demonstration record.</b> Synthetic data generated for interface testing. Not a real observation.</div>';
+  h += '<p class="small noprint">[<a href="search.html?site=' + r.site_id + '">All records from this site</a>] ' +
+       '[<a href="search.html?site=' + r.site_id + "&amp;crop=" + r.crop_id + "&amp;stage=" + r.stage_code + '&amp;view=site">Site summary for this stage</a>] ' +
+       '[<a href="#" onclick="window.print();return false">Print</a>]</p>';
+  h += '<table class="rec"><tbody>';
+  h += sec("Phenological event");
+  h += row("Stage", '<span class="mono">BBCH ' + r.stage_code + "</span> &mdash; <b>" + e(st.en) + "</b><br>" +
+    e(st.ko) + " &middot; " + e(st.ja) + " &middot; " + e(st.zh));
+  h += row("Definition", e(st.def));
+  h += row("Stage scale", e(r.stage_scale) + ' &mdash; <a href="stages.html#' + e(r.stage_scale) + '">' + e(sc.name) + "</a>");
+  h += row("Date observed", '<span class="mono">' + r.obs_date + "</span> (day of year " + r.doy + ")");
+  h += sec("Crop");
+  h += row("Crop", '<a href="search.html?crop=' + r.crop_id + '">' + e(c.en) + "</a> &middot; " + e(c.ko) + " &middot; " + e(c.ja) + " &middot; " + e(c.zh));
+  h += row("Scientific name", "<i>" + e(r.scientific_name) + "</i> (" + e(c.family) + ")");
+  h += row("Cultivar", e(r.cultivar));
+  h += sec("Location");
+  h += row("Site ID", '<span class="mono">' + e(r.site_id) + "</span>");
+  h += row("Locality", e(r.locality) + ", " + e(r.admin1));
+  h += row("Country", e(r.country_code) + " " + e(cc.en) + (cc.native && cc.native !== cc.en ? " / " + e(cc.native) : ""));
+  h += row("Coordinates", r.latitude + ", " + r.longitude + ' <span class="small muted">(WGS84, rounded to 0.01&deg; &asymp; 1 km)</span>');
+  h += row("Elevation", r.elevation_m + " m");
+  h += sec("Observation");
+  h += row("Observer ID", '<span class="mono">' + e(r.observer_id) + "</span> (" + e(r.observer_role) + ")");
+  h += row("Method", e(r.method) + ", " + r.n_plants + " plants");
+  h += row("Observer confidence", e(r.confidence));
+  h += row("Photo", e(r.photo));
+  h += row("Notes", e(r.notes) || '<span class="muted">none</span>');
+  h += sec("Quality control");
+  h += row("QC status", '<span class="badge ' + (r.qc_status === "verified" ? "ok" : "wait") + '">' + e(r.qc_status) + "</span>");
+  h += row("Record status", e(r.status));
+  h += "</tbody></table>";
+
+  // same site, crop and stage in other years
+  var same = all.filter(function (x) { return x.site_id === r.site_id && x.crop_id === r.crop_id && x.stage_code === r.stage_code; })
+                .sort(function (a, b) { return a.year - b.year; });
+  h += "<h2>Same stage at this site, all years</h2>";
+  h += '<div class="tw"><table class="data"><thead><tr><th class="num">Year</th><th>Date</th><th class="num">DOY</th><th>Record</th></tr></thead><tbody>';
+  same.forEach(function (x) {
+    var me = x.record_id === r.record_id;
+    h += "<tr><td class=\"num\">" + (me ? "<b>" + x.year + "</b>" : x.year) + '</td><td class="code">' + x.obs_date + '</td><td class="num">' + x.doy +
+      '</td><td class="code">' + (me ? "<b>this record</b>" : '<a href="record.html?id=' + x.record_id + '">' + x.record_id + "</a>") + "</td></tr>";
+  });
+  h += "</tbody></table></div>";
+
+  // other stages, same site and year
+  var season = all.filter(function (x) { return x.site_id === r.site_id && x.crop_id === r.crop_id && x.year === r.year; })
+                  .sort(function (a, b) { return a.doy - b.doy; });
+  h += "<h2>All stages at this site in " + r.year + "</h2>";
+  h += '<div class="tw"><table class="data"><thead><tr><th>Stage</th><th>Date</th><th class="num">DOY</th><th>Record</th></tr></thead><tbody>';
+  season.forEach(function (x) {
+    var me = x.record_id === r.record_id;
+    h += '<tr><td><span class="mono">' + x.stage_code + "</span> " + e(PB.stageLabel(x.stage_scale, x.stage_code)) + '</td><td class="code">' + x.obs_date +
+      '</td><td class="num">' + x.doy + '</td><td class="code">' + (me ? "<b>this record</b>" : '<a href="record.html?id=' + x.record_id + '">' + x.record_id + "</a>") + "</td></tr>";
+  });
+  h += "</tbody></table></div>";
+
+  h += "<h2>Cite this record</h2><pre>PhenoBase (" + (window.PB_OBS.generated || "").slice(0, 4) + "). Record " + e(r.record_id) +
+    ". " + e(c.en) + " (" + e(r.cultivar) + "), BBCH " + r.stage_code + ", " + r.obs_date + ", " + e(r.locality) + ", " + e(r.country_code) +
+    ".\nPhenoBase: Asian Farmer Phenology Database, release " + e(window.PB_OBS.generated) + ".</pre>";
+  out.innerHTML = h;
+})();
+</script>
+</body>
+</html>

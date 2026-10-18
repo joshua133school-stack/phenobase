@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Search records - PhenoBase</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="wrap">
+<!--#masthead-->
+<div id="masthead">
+<div class="name"><a href="index.html">PhenoBase</a></div>
+<div class="tagline">Asian Farmer Phenology Database &middot; Fruit and Field Crops
+<span class="cjk">&middot; 아시아 농업인 작물 생물계절 데이터베이스 &middot; アジア農業者作物フェノロジーDB &middot; 亚洲农民作物物候数据库</span></div>
+</div>
+<div id="menu"><a href="index.html">Home</a><span class="sep">|</span><a href="search.html" class="here">Search records</a><span class="sep">|</span><a href="crops.html">Crops</a><span class="sep">|</span><a href="stages.html">Stage codes</a><span class="sep">|</span><a href="guidelines/index.html">Farmer guidelines</a><span class="sep">|</span><a href="submit.html">Submit observations</a><span class="sep">|</span><a href="data.html">Data &amp; standards</a><span class="sep">|</span><a href="about.html">About</a></div>
+<!--/masthead-->
+<div id="crumbs">You are here: <a href="index.html">Home</a> &gt; <b>Search records</b></div>
+<div id="content">
+
+<h1>Search observation records</h1>
+<p class="small muted">Leave a field blank to match everything. The address of the results page is a permanent link
+to the query, so you can bookmark it or cite it.</p>
+
+<form class="q" id="qf" action="search.html" method="get">
+<fieldset><legend>Query</legend>
+<table class="form">
+<tr><td class="l"><label for="f-crop">Crop</label></td>
+    <td><select id="f-crop" name="crop" class="long"></select></td>
+    <td class="l"><label for="f-group">Crop group</label></td>
+    <td><select id="f-group" name="group"></select></td></tr>
+<tr><td class="l"><label for="f-cc">Country</label></td>
+    <td><select id="f-cc" name="cc" class="long"></select></td>
+    <td class="l"><label for="f-site">Site ID</label></td>
+    <td><input type="text" id="f-site" name="site" class="med" placeholder="e.g. KR-AND-01"></td></tr>
+<tr><td class="l"><label for="f-stage">Stage (BBCH)</label></td>
+    <td><select id="f-stage" name="stage" class="long"></select></td>
+    <td class="l"><label for="f-y1">Years</label></td>
+    <td><input type="number" id="f-y1" name="y1" class="short" min="1900" max="2100" placeholder="from"> &ndash;
+        <input type="number" id="f-y2" name="y2" class="short" min="1900" max="2100" placeholder="to"></td></tr>
+<tr><td class="l"><label for="f-q">Text</label></td>
+    <td><input type="text" id="f-q" name="q" class="long" placeholder="cultivar, locality, notes"></td>
+    <td class="l"><label for="f-qc">QC status</label></td>
+    <td><select id="f-qc" name="qc"><option value="">any</option><option value="verified">verified</option><option value="unverified">unverified</option></select></td></tr>
+<tr><td class="l"><label for="f-role">Observer</label></td>
+    <td><select id="f-role" name="role"><option value="">any</option><option value="farmer">farmer</option><option value="extension officer">extension officer</option><option value="researcher">researcher</option></select></td>
+    <td class="l"><label for="f-conf">Confidence</label></td>
+    <td><select id="f-conf" name="conf"><option value="">any</option><option value="high">high</option><option value="medium">medium or high</option></select></td></tr>
+</table>
+</fieldset>
+<fieldset><legend>Output</legend>
+<table class="form">
+<tr><td class="l">View</td>
+    <td><label><input type="radio" name="view" value="records" checked> Record list</label> &nbsp;
+        <label><input type="radio" name="view" value="year"> Summary by year</label> &nbsp;
+        <label><input type="radio" name="view" value="site"> Summary by site (with trend)</label></td></tr>
+<tr><td class="l"><label for="f-n">Rows per page</label></td>
+    <td><select id="f-n" name="n"><option>50</option><option>100</option><option>500</option></select></td></tr>
+<tr><td class="l"></td>
+    <td><input type="submit" class="primary" value="Search"> <a href="search.html">Clear form</a></td></tr>
+</table>
+</fieldset>
+</form>
+
+<div id="out"><noscript><p class="err">The search page needs JavaScript. Without it you can download the complete
+data set as CSV from <a href="data.html#download">Data &amp; standards</a>.</p></noscript></div>
+
+</div>
+<!--#footer-->
+<div id="footer">
+PhenoBase release 0.1 (prototype) &middot; Page updated 2026-10-18 &middot;
+<a href="data.html#license">Licence &amp; citation</a> &middot;
+<a href="about.html#contact">Contact</a> &middot;
+<a href="https://github.com/joshua133school-stack/phenobase/issues">Report a problem</a> &middot;
+Guidelines: <a href="guidelines/en.html">English</a> | <a href="guidelines/ko.html">한국어</a> | <a href="guidelines/ja.html">日本語</a> | <a href="guidelines/zh-hans.html">简体中文</a>
+</div>
+<!--/footer-->
+</div>
+<script src="data/reference.js"></script>
+<script src="data/observations.js"></script>
+<script src="assets/pb.js"></script>
+<script src="assets/search.js"></script>
+</body>
+</html>

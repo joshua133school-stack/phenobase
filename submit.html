@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Submit observations - PhenoBase</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="wrap">
+<!--#masthead-->
+<div id="masthead">
+<div class="name"><a href="index.html">PhenoBase</a></div>
+<div class="tagline">Asian Farmer Phenology Database &middot; Fruit and Field Crops
+<span class="cjk">&middot; 아시아 농업인 작물 생물계절 데이터베이스 &middot; アジア農業者作物フェノロジーDB &middot; 亚洲农民作物物候数据库</span></div>
+</div>
+<div id="menu"><a href="index.html">Home</a><span class="sep">|</span><a href="search.html">Search records</a><span class="sep">|</span><a href="crops.html">Crops</a><span class="sep">|</span><a href="stages.html">Stage codes</a><span class="sep">|</span><a href="guidelines/index.html">Farmer guidelines</a><span class="sep">|</span><a href="submit.html" class="here">Submit observations</a><span class="sep">|</span><a href="data.html">Data &amp; standards</a><span class="sep">|</span><a href="about.html">About</a></div>
+<!--/masthead-->
+<div id="crumbs">You are here: <a href="index.html">Home</a> &gt; <b>Submit observations</b></div>
+<div id="content">
+
+<h1>Submit observations</h1>
+<div class="notice"><b>How submission works in this release.</b> The online upload server is not running yet. Observations
+you enter here are kept <b>on this device only</b>. When you have finished, press <b>Download CSV</b> and send the file to your
+national coordinator (or attach it to an issue on the <a href="https://github.com/joshua133school-stack/phenobase/issues">project tracker</a>).
+The form works without an internet connection once the page has loaded.</div>
+
+<p class="small">Read the <a href="guidelines/index.html">observation guideline</a> first. Fields marked <span class="req">*</span> are required.
+Use one entry per stage. For example, full flowering and end of flowering are two entries.</p>
+
+<form id="obs" autocomplete="off" novalidate>
+<fieldset><legend>1. Observer and site <span class="small muted">(kept on this device for the next entry)</span></legend>
+<table class="form">
+<tr><td class="l"><label for="observer_id">Observer ID</label></td>
+    <td><input type="text" id="observer_id" class="med" placeholder="e.g. OBS-KR-017"></td>
+    <td class="h">Given by your coordinator. Leave blank if you do not have one yet. Do not enter your name.</td></tr>
+<tr><td class="l"><label for="observer_role">Observer is</label></td>
+    <td><select id="observer_role"><option>farmer</option><option>extension officer</option><option>researcher</option><option>student</option></select></td><td></td></tr>
+<tr><td class="l"><label for="country_code">Country <span class="req">*</span></label></td>
+    <td><select id="country_code" class="long"></select></td><td></td></tr>
+<tr><td class="l"><label for="admin1">Province / state</label></td>
+    <td><input type="text" id="admin1" class="long" placeholder="e.g. Gyeongsangbuk-do"></td><td></td></tr>
+<tr><td class="l"><label for="locality">Village / town <span class="req">*</span></label></td>
+    <td><input type="text" id="locality" class="long" placeholder="e.g. Andong"></td><td></td></tr>
+<tr><td class="l"><label for="latitude">Latitude, longitude</label></td>
+    <td><input type="text" id="latitude" class="med" inputmode="decimal" placeholder="36.57">
+        <input type="text" id="longitude" class="med" inputmode="decimal" placeholder="128.73">
+        <button type="button" id="gps">Use my location</button> <span id="gps-msg" class="small"></span></td>
+    <td class="h">Decimal degrees. Stand in the orchard or field. Published rounded to about 1 km.</td></tr>
+<tr><td class="l"><label for="elevation_m">Elevation (m)</label></td>
+    <td><input type="number" id="elevation_m" class="short" min="-100" max="6000"></td><td class="h">If known.</td></tr>
+<tr><td class="l"><label for="site_id">Site ID</label></td>
+    <td><input type="text" id="site_id" class="med" placeholder="e.g. KR-AND-01"></td>
+    <td class="h">If your coordinator has registered your site. Otherwise leave blank.</td></tr>
+</table>
+</fieldset>
+
+<fieldset><legend>2. Crop</legend>
+<table class="form">
+<tr><td class="l"><label for="crop_id">Crop <span class="req">*</span></label></td>
+    <td><select id="crop_id" class="long"></select></td><td class="h" id="crop-sci"></td></tr>
+<tr><td class="l"><label for="cultivar">Cultivar / variety</label></td>
+    <td><input type="text" id="cultivar" class="long" placeholder="e.g. Fuji, Niitaka, Koshihikari"></td><td></td></tr>
+<tr><td class="l"><label for="method">Method</label></td>
+    <td><select id="method"><option value="tagged plants">tagged plants (fruit trees)</option><option value="fixed plot">fixed plot (field crops)</option><option value="whole field">whole orchard / field estimate</option></select></td><td></td></tr>
+<tr><td class="l"><label for="n_plants">Number of plants observed</label></td>
+    <td><input type="number" id="n_plants" class="short" min="1" max="1000" value="5"></td><td class="h">Recommended: 5 trees, or 10 plants in the plot.</td></tr>
+</table>
+</fieldset>
+
+<fieldset><legend>3. Observation</legend>
+<table class="form">
+<tr><td class="l"><label for="stage_code">Stage <span class="req">*</span></label></td>
+    <td><select id="stage_code" class="long"></select></td><td class="h">* = core stage</td></tr>
+<tr><td class="l"></td><td colspan="2" class="small" id="stage-def"></td></tr>
+<tr><td class="l"><label for="obs_date">Date reached <span class="req">*</span></label></td>
+    <td><input type="date" id="obs_date"></td><td class="h">The first day the stage was true for the observed plants.</td></tr>
+<tr><td class="l"><label for="confidence">How sure are you?</label></td>
+    <td><select id="confidence"><option value="high">high: saw it on that day</option><option value="medium">medium: within 2 days</option><option value="low">low: estimate, missed visits</option></select></td><td></td></tr>
+<tr><td class="l"><label for="photo">Photo taken?</label></td>
+    <td><select id="photo"><option>no</option><option>yes</option></select></td><td class="h">Keep the photo; your coordinator may ask for it.</td></tr>
+<tr><td class="l"><label for="notes">Notes</label></td>
+    <td colspan="2"><textarea id="notes" rows="2" placeholder="frost, hail, typhoon, pruning, greenhouse, flower induction, last 'not yet' visit..."></textarea></td></tr>
+<tr><td class="l"></td>
+    <td colspan="2"><button type="submit" class="primary">Add to list</button> <span id="msg"></span></td></tr>
+</table>
+</fieldset>
+</form>
+
+<h2>Observations on this device</h2>
+<div id="queue"></div>
+<p class="noprint">
+<button type="button" id="dl">Download CSV</button>
+<button type="button" id="clear">Delete all</button>
+</p>
+
+</div>
+<!--#footer-->
+<div id="footer">
+PhenoBase release 0.1 (prototype) &middot; Page updated 2026-10-18 &middot;
+<a href="data.html#license">Licence &amp; citation</a> &middot;
+<a href="about.html#contact">Contact</a> &middot;
+<a href="https://github.com/joshua133school-stack/phenobase/issues">Report a problem</a> &middot;
+Guidelines: <a href="guidelines/en.html">English</a> | <a href="guidelines/ko.html">한국어</a> | <a href="guidelines/ja.html">日本語</a> | <a href="guidelines/zh-hans.html">简体中文</a>
+</div>
+<!--/footer-->
+</div>
+<script src="data/reference.js"></script>
+<script src="assets/pb.js"></script>
+<script src="assets/submit.js"></script>
+</body>
+</html>

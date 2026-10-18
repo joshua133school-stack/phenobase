@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data &amp; standards - PhenoBase</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="wrap">
+<!--#masthead-->
+<div id="masthead">
+<div class="name"><a href="index.html">PhenoBase</a></div>
+<div class="tagline">Asian Farmer Phenology Database &middot; Fruit and Field Crops
+<span class="cjk">&middot; 아시아 농업인 작물 생물계절 데이터베이스 &middot; アジア農業者作物フェノロジーDB &middot; 亚洲农民作物物候数据库</span></div>
+</div>
+<div id="menu"><a href="index.html">Home</a><span class="sep">|</span><a href="search.html">Search records</a><span class="sep">|</span><a href="crops.html">Crops</a><span class="sep">|</span><a href="stages.html">Stage codes</a><span class="sep">|</span><a href="guidelines/index.html">Farmer guidelines</a><span class="sep">|</span><a href="submit.html">Submit observations</a><span class="sep">|</span><a href="data.html" class="here">Data &amp; standards</a><span class="sep">|</span><a href="about.html">About</a></div>
+<!--/masthead-->
+<div id="crumbs">You are here: <a href="index.html">Home</a> &gt; <b>Data &amp; standards</b></div>
+<div id="content">
+
+<h1>Data access and standards</h1>
+
+<div class="toc"><b>Contents</b>
+<ol>
+<li><a href="#download">Download</a></li>
+<li><a href="#fields">Field dictionary</a></li>
+<li><a href="#dwc">Mapping to Darwin Core</a></li>
+<li><a href="#qc">Quality control</a></li>
+<li><a href="#privacy">Observer privacy and data ownership</a></li>
+<li><a href="#license">Licence and citation</a></li>
+<li><a href="#versions">Versions</a></li>
+</ol></div>
+
+<h2 id="download">1. Download</h2>
+<div class="notice demo"><b>The current files contain synthetic demonstration data only.</b> Do not use them for analysis.</div>
+<div class="tw"><table class="data">
+<thead><tr><th>File</th><th>Format</th><th>Contents</th></tr></thead>
+<tbody>
+<tr><td class="code"><a href="data/observations.csv">observations.csv</a></td><td>CSV, UTF-8, comma-separated, header row</td><td>All observation records, one row per stage observation</td></tr>
+<tr><td class="code"><a href="data/reference.json">reference.json</a></td><td>JSON, UTF-8</td><td>Crop list, stage scales with multilingual labels, countries, guideline languages</td></tr>
+<tr><td class="code"><a href="search.html">search.html</a></td><td>CSV export</td><td>Any query result can be downloaded from the results page</td></tr>
+</tbody></table></div>
+<p class="small">A versioned machine API (<span class="mono">GET /api/v1/observations?crop=&amp;cc=&amp;stage=&amp;y1=&amp;y2=</span>, same parameters as the search page) is planned for release 1.0.</p>
+
+<h2 id="fields">2. Field dictionary</h2>
+<p>Fields of <span class="mono">observations.csv</span>, in column order.</p>
+<div class="tw"><table class="data full">
+<thead><tr><th class="num">#</th><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
+<tbody>
+<tr><td class="num">1</td><td class="code">record_id</td><td>text</td><td>Permanent record identifier: PB-&lt;country&gt;-&lt;6 digits&gt;. Never reused.</td><td class="code">PB-KR-000123</td></tr>
+<tr><td class="num">2</td><td class="code">status</td><td>code</td><td>DEMO (synthetic), SUBMITTED (received, not yet loaded), PUBLISHED</td><td class="code">PUBLISHED</td></tr>
+<tr><td class="num">3</td><td class="code">country_code</td><td>ISO 3166-1 alpha-2</td><td>Country of the site</td><td class="code">KR</td></tr>
+<tr><td class="num">4</td><td class="code">admin1</td><td>text</td><td>Province, state or equivalent</td><td class="code">Gyeongsangbuk-do</td></tr>
+<tr><td class="num">5</td><td class="code">locality</td><td>text</td><td>Municipality, county or village (romanised)</td><td class="code">Andong</td></tr>
+<tr><td class="num">6</td><td class="code">site_id</td><td>text</td><td>Registered site: &lt;country&gt;-&lt;3 letters&gt;-&lt;2 digits&gt;. One site = one orchard block or field of one cultivar.</td><td class="code">KR-AND-01</td></tr>
+<tr><td class="num">7</td><td class="code">latitude</td><td>decimal degrees, WGS84</td><td>Rounded to 2 decimals (about 1 km) in published data</td><td class="code">36.57</td></tr>
+<tr><td class="num">8</td><td class="code">longitude</td><td>decimal degrees, WGS84</td><td>Rounded to 2 decimals</td><td class="code">128.73</td></tr>
+<tr><td class="num">9</td><td class="code">elevation_m</td><td>integer</td><td>Metres above sea level</td><td class="code">140</td></tr>
+<tr><td class="num">10</td><td class="code">crop_id</td><td>code</td><td>Crop identifier from the <a href="crops.html">crop list</a></td><td class="code">apple</td></tr>
+<tr><td class="num">11</td><td class="code">scientific_name</td><td>text</td><td>Scientific name with author</td><td class="code">Malus domestica Borkh.</td></tr>
+<tr><td class="num">12</td><td class="code">cultivar</td><td>text</td><td>Cultivar or variety name as used by the farmer (romanised)</td><td class="code">Fuji</td></tr>
+<tr><td class="num">13</td><td class="code">stage_scale</td><td>code</td><td>Stage scale: FRUIT_DECID, FRUIT_EVERG, CEREAL, ANNUAL (<a href="stages.html">definitions</a>)</td><td class="code">FRUIT_DECID</td></tr>
+<tr><td class="num">14</td><td class="code">stage_code</td><td>2-digit text</td><td>BBCH stage code within the scale</td><td class="code">65</td></tr>
+<tr><td class="num">15</td><td class="code">obs_date</td><td>ISO 8601 date</td><td>First date the stage was reached by the observed plants</td><td class="code">2024-04-21</td></tr>
+<tr><td class="num">16</td><td class="code">year</td><td>integer</td><td>Year of obs_date</td><td class="code">2024</td></tr>
+<tr><td class="num">17</td><td class="code">doy</td><td>integer 1&ndash;366</td><td>Day of year of obs_date (1 January = 1)</td><td class="code">112</td></tr>
+<tr><td class="num">18</td><td class="code">observer_id</td><td>text</td><td>Pseudonymous observer code issued by the national node. Names are never published.</td><td class="code">OBS-KR-017</td></tr>
+<tr><td class="num">19</td><td class="code">observer_role</td><td>code</td><td>farmer, extension officer, researcher, student</td><td class="code">farmer</td></tr>
+<tr><td class="num">20</td><td class="code">method</td><td>code</td><td>tagged plants, fixed plot, whole field</td><td class="code">tagged plants</td></tr>
+<tr><td class="num">21</td><td class="code">n_plants</td><td>integer</td><td>Number of plants observed</td><td class="code">5</td></tr>
+<tr><td class="num">22</td><td class="code">confidence</td><td>code</td><td>Observer's confidence in the date: high (seen that day), medium (within 2 days), low (estimate)</td><td class="code">high</td></tr>
+<tr><td class="num">23</td><td class="code">qc_status</td><td>code</td><td>unverified, verified, flagged (see <a href="#qc">quality control</a>)</td><td class="code">verified</td></tr>
+<tr><td class="num">24</td><td class="code">photo</td><td>yes / no</td><td>Whether a photo exists at the national node</td><td class="code">yes</td></tr>
+<tr><td class="num">25</td><td class="code">notes</td><td>text</td><td>Weather damage, management, protected cultivation, other remarks</td><td class="code">late frost on 2 nights</td></tr>
+</tbody></table></div>
+
+<h2 id="dwc">3. Mapping to Darwin Core</h2>
+<p>For publication to GBIF and other aggregators, records map to Darwin Core terms as follows. The BBCH stage is
+carried in <span class="mono">reproductiveCondition</span> for flowering and fruiting stages, and in
+<span class="mono">dynamicProperties</span> for all stages. Mapping to the Plant Phenology Ontology is planned.</p>
+<div class="tw"><table class="data">
+<thead><tr><th>PhenoBase field</th><th>Darwin Core term</th></tr></thead>
+<tbody>
+<tr><td class="code">record_id</td><td class="code">occurrenceID</td></tr>
+<tr><td class="code">obs_date / year / doy</td><td class="code">eventDate / year / startDayOfYear</td></tr>
+<tr><td class="code">country_code / admin1 / locality</td><td class="code">countryCode / stateProvince / municipality</td></tr>
+<tr><td class="code">site_id</td><td class="code">locationID</td></tr>
+<tr><td class="code">latitude / longitude</td><td class="code">decimalLatitude / decimalLongitude (coordinateUncertaintyInMeters = 1000)</td></tr>
+<tr><td class="code">elevation_m</td><td class="code">minimumElevationInMeters</td></tr>
+<tr><td class="code">scientific_name / cultivar</td><td class="code">scientificName / cultivarEpithet</td></tr>
+<tr><td class="code">stage_scale + stage_code</td><td class="code">reproductiveCondition, dynamicProperties {"bbch":"65","scale":"FRUIT_DECID"}</td></tr>
+<tr><td class="code">observer_id</td><td class="code">recordedByID</td></tr>
+<tr><td class="code">method / n_plants</td><td class="code">samplingProtocol / organismQuantity</td></tr>
+<tr><td class="code">qc_status</td><td class="code">identificationVerificationStatus</td></tr>
+<tr><td class="code">notes</td><td class="code">occurrenceRemarks</td></tr>
+</tbody></table></div>
+
+<h2 id="qc">4. Quality control</h2>
+<p>New records enter as <span class="badge wait">unverified</span>. The national node checks each season's records and sets
+<span class="badge ok">verified</span> or <b>flagged</b>. Automatic checks:</p>
+<ol>
+<li><b>Order:</b> stages of one site and season must be in the order of their codes (for example 60 before 65 before 69).</li>
+<li><b>Range:</b> the date must be within 3 standard deviations of the mean for that crop, stage and region, or carry a note explaining why.</li>
+<li><b>Interval:</b> intervals that are biologically impossible (for example full flowering to harvest maturity of apple in under 60 days) are flagged.</li>
+<li><b>Duplicates:</b> one record per site, crop, cultivar, stage and season.</li>
+<li><b>Location:</b> coordinates must fall inside the stated country and province.</li>
+</ol>
+<p>Flagged records are not deleted. They stay in the database with their flag so the decision can be reviewed.</p>
+
+<h2 id="privacy">5. Observer privacy and data ownership</h2>
+<ul>
+<li>Farmers <b>own their observations</b>. They choose to share them with PhenoBase and can withdraw their records at any time through their national node.</li>
+<li>Observer names, phone numbers and exact farm addresses are held only by the national node and are <b>never published</b>. Published records carry a pseudonymous observer ID.</li>
+<li>Published coordinates are rounded to about 1 km.</li>
+<li>Each participating farmer receives their own records back every season, with the regional average for comparison.</li>
+<li>The project follows the FAIR principles (findable, accessible, interoperable, reusable) for data and the CARE principles
+(collective benefit, authority to control, responsibility, ethics) for the communities who provide it.</li>
+</ul>
+
+<h2 id="license">6. Licence and citation</h2>
+<p><b>Proposed licence:</b> observation data <b>CC BY 4.0</b> (reuse permitted with attribution); guideline texts <b>CC BY 4.0</b>;
+website source code under an open-source licence to be confirmed by the project board.</p>
+<p><b>Cite the database as:</b></p>
+<pre>PhenoBase: Asian Farmer Phenology Database for Fruit and Field Crops (year).
+Release &lt;version&gt;. https://github.com/joshua133school-stack/phenobase. Accessed &lt;date&gt;.</pre>
+<p>Cite single records by their record ID; each <a href="search.html">record page</a> shows a citation line.</p>
+
+<h2 id="versions">7. Versions</h2>
+<div class="tw"><table class="data">
+<thead><tr><th>Release</th><th>Date</th><th>Records</th><th>Changes</th></tr></thead>
+<tbody>
+<tr><td class="code">0.1</td><td class="code">2026-10-18</td><td>demo only</td><td>Prototype website, reference lists, stage scales, field dictionary, observation form, draft guidelines (EN, KO, JA, ZH-Hans)</td></tr>
+</tbody></table></div>
+
+</div>
+<!--#footer-->
+<div id="footer">
+PhenoBase release 0.1 (prototype) &middot; Page updated 2026-10-18 &middot;
+<a href="data.html#license">Licence &amp; citation</a> &middot;
+<a href="about.html#contact">Contact</a> &middot;
+<a href="https://github.com/joshua133school-stack/phenobase/issues">Report a problem</a> &middot;
+Guidelines: <a href="guidelines/en.html">English</a> | <a href="guidelines/ko.html">한국어</a> | <a href="guidelines/ja.html">日本語</a> | <a href="guidelines/zh-hans.html">简体中文</a>
+</div>
+<!--/footer-->
+</div>
+</body>
+</html>

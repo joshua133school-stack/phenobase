@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Farmer guidelines - PhenoBase</title>
+<link rel="stylesheet" href="../assets/style.css">
+</head>
+<body>
+<div id="wrap">
+<!--#masthead-->
+<div id="masthead">
+<div class="name"><a href="../index.html">PhenoBase</a></div>
+<div class="tagline">Asian Farmer Phenology Database &middot; Fruit and Field Crops
+<span class="cjk">&middot; 아시아 농업인 작물 생물계절 데이터베이스 &middot; アジア農業者作物フェノロジーDB &middot; 亚洲农民作物物候数据库</span></div>
+</div>
+<div id="menu"><a href="../index.html">Home</a><span class="sep">|</span><a href="../search.html">Search records</a><span class="sep">|</span><a href="../crops.html">Crops</a><span class="sep">|</span><a href="../stages.html">Stage codes</a><span class="sep">|</span><a href="../guidelines/index.html" class="here">Farmer guidelines</a><span class="sep">|</span><a href="../submit.html">Submit observations</a><span class="sep">|</span><a href="../data.html">Data &amp; standards</a><span class="sep">|</span><a href="../about.html">About</a></div>
+<!--/masthead-->
+<div id="crumbs">You are here: <a href="../index.html">Home</a> &gt; <b>Farmer guidelines</b></div>
+<div id="content">
+
+<h1>Farmer phenology observation guideline</h1>
+<p>Guideline <b>PB-G-01</b> tells farmers how to choose plants, when to look, and how to decide the date of each stage.
+It is one document, translated into the languages of the region. The English text is the reference version; where a
+translation and the English text differ, the English text applies until the translation is reviewed.</p>
+<p>Each guideline ends with a <b>recording sheet</b> that can be printed and kept in the orchard or field.</p>
+
+<h2>Read the guideline</h2>
+<div class="tw"><table class="data">
+<thead><tr><th>Language</th><th></th><th>Document</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td><b>English</b></td><td class="code">en</td><td><a href="en.html">PB-G-01 v0.1</a></td><td><span class="badge ok">reference</span></td></tr>
+<tr><td lang="ko"><b>한국어</b></td><td class="code">ko</td><td><a href="ko.html">PB-G-01 v0.1</a></td><td><span class="badge wait">draft</span></td></tr>
+<tr><td lang="ja"><b>日本語</b></td><td class="code">ja</td><td><a href="ja.html">PB-G-01 v0.1</a></td><td><span class="badge wait">draft</span></td></tr>
+<tr><td lang="zh-Hans"><b>简体中文</b></td><td class="code">zh-Hans</td><td><a href="zh-hans.html">PB-G-01 v0.1</a></td><td><span class="badge wait">draft</span></td></tr>
+</tbody></table></div>
+
+<h2 id="translate">Translation status</h2>
+<p>Status codes: <span class="badge ok">reference</span> master text &middot;
+<span class="badge ok">reviewed</span> checked by a native-speaking agronomist &middot;
+<span class="badge wait">draft</span> translated, not yet reviewed &middot;
+<span class="badge">wanted</span> translator needed.</p>
+<div class="tw" id="langs"><noscript><p class="err">The status table needs JavaScript. Language list: <a href="../data/reference.json">reference.json</a>.</p></noscript></div>
+
+<h3>How to translate</h3>
+<ol>
+<li>Open an issue on the <a href="https://github.com/joshua133school-stack/phenobase/issues">project tracker</a> with the label
+<span class="mono">translation</span> and the language name, so that work is not duplicated.</li>
+<li>Copy <span class="mono">guidelines/en.html</span> to <span class="mono">guidelines/&lt;language code&gt;.html</span> and translate the text.
+Keep the section numbers, stage codes and table structure unchanged.</li>
+<li>Use the farmers' own words for stages (for example the local word for "full bloom"), not only textbook terms. Where a local
+term is used, keep the BBCH code beside it.</li>
+<li>Translate cultivar examples into local cultivars that farmers in your country know.</li>
+<li>The translation becomes <b>reviewed</b> when a second person, a native-speaking agronomist or extension officer, has checked it
+and five farmers have tested it in the field.</li>
+</ol>
+
+</div>
+<!--#footer-->
+<div id="footer">
+PhenoBase release 0.1 (prototype) &middot; Page updated 2026-10-18 &middot;
+<a href="../data.html#license">Licence &amp; citation</a> &middot;
+<a href="../about.html#contact">Contact</a> &middot;
+<a href="https://github.com/joshua133school-stack/phenobase/issues">Report a problem</a> &middot;
+Guidelines: <a href="../guidelines/en.html">English</a> | <a href="../guidelines/ko.html">한국어</a> | <a href="../guidelines/ja.html">日本語</a> | <a href="../guidelines/zh-hans.html">简体中文</a>
+</div>
+<!--/footer-->
+</div>
+<script src="../data/reference.js"></script>
+<script src="../assets/pb.js"></script>
+<script>
+(function () {
+  var e = PB.esc, cls = { Reference: "ok", Reviewed: "ok", Draft: "wait", Wanted: "" };
+  var h = '<table class="data"><thead><tr><th>Code</th><th>Language</th><th>Name in English</th><th>Status</th><th>Document</th></tr></thead><tbody>';
+  PB.ref.languages.forEach(function (l) {
+    h += '<tr><td class="code">' + e(l.code) + '</td><td lang="' + e(l.code) + '">' + e(l.native) + "</td><td>" + e(l.en) +
+      '</td><td><span class="badge ' + cls[l.status] + '">' + e(l.status.toLowerCase()) + "</span></td><td>" +
+      (l.file ? '<a href="' + e(l.file) + '">' + e(l.file) + "</a>" : '<a href="https://github.com/joshua133school-stack/phenobase/issues">volunteer</a>') + "</td></tr>";
+  });
+  document.getElementById("langs").innerHTML = h + "</tbody></table>";
+})();
+</script>
+</body>
+</html>

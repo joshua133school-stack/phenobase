@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Organization - PhenoBase</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="wrap">
+<!--#masthead-->
+<div id="masthead">
+<a class="name" href="index.html">PhenoBase</a>
+<span class="tagline">Asian Farmer Phenology Database</span>
+<div id="menu"><a href="about.html">About</a><a href="how-to.html" class="here">How to Use</a><a href="index.html">PhenoBase</a></div>
+</div>
+<div id="sub"><a href="how-to.html">Overview</a> <b>Organization</b> <a href="individual.html">Individual</a> <a href="guidelines/index.html">Guideline</a> <a href="stages.html">Stage codes</a> <a href="submit.html">Record</a></div>
+<!--/masthead-->
+<div id="content" class="doc">
+
+<h1>Organization</h1>
+<p>For observers who have been trained by their organization. Your organization gives you an <b>organization code</b>
+and your <b>observer ID</b>. If you have not been trained, use the <a href="individual.html">Individual</a> path instead.</p>
+
+<form id="f" autocomplete="off" novalidate>
+<fieldset><legend>1. Organization code</legend>
+<table class="form">
+<tr><td class="l"><label for="code">Organization code <span class="req">*</span></label></td>
+    <td><input type="text" id="code" class="med" autocapitalize="characters" placeholder="e.g. DEMO-ORG"></td>
+    <td class="h" id="org-name"></td></tr>
+</table>
+</fieldset>
+
+<fieldset><legend>2. Observer</legend>
+<table class="form">
+<tr><td class="l"><label for="observer_id">Observer ID <span class="req">*</span></label></td>
+    <td><input type="text" id="observer_id" class="med" autocapitalize="characters" placeholder="given by your organization"></td>
+    <td class="h">Do not enter your name.</td></tr>
+<tr><td class="l"></td>
+    <td colspan="2"><label><input type="checkbox" id="trained"> I have completed the guideline training given by this organization.</label></td></tr>
+<tr><td class="l"></td>
+    <td colspan="2"><button type="submit">Continue to recording</button> <span id="msg" class="err"></span></td></tr>
+</table>
+</fieldset>
+</form>
+
+<p class="small muted">Testing code: <span class="mono">DEMO-ORG</span>. Codes identify which organization coordinates a record;
+they are checked on this device only in this prototype.</p>
+
+</div>
+<!--#footer-->
+<div id="footer">PhenoBase 0.1 (prototype) &middot; <a href="data.html#license">Licence</a> &middot; <a href="https://github.com/joshua133school-stack/phenobase/issues">Contact</a></div>
+<!--/footer-->
+</div>
+<script src="data/reference.js"></script>
+<script src="assets/pb.js"></script>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var s = PB.session.get();
+  if (s && s.mode === "org") { $("code").value = s.org_code; $("observer_id").value = s.observer_id; }
+
+  function showOrg() {
+    var o = PB.org($("code").value);
+    $("org-name").innerHTML = o ? '<span class="ok">' + PB.esc(o.name) + "</span>" : "";
+    return o;
+  }
+  $("code").addEventListener("input", showOrg);
+  showOrg();
+
+  $("f").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var o = showOrg(), id = $("observer_id").value.trim().toUpperCase(), errs = [];
+    if (!o) errs.push("Organization code not recognised. Check it with your organization.");
+    if (!id) errs.push("Enter the observer ID given by your organization.");
+    if (!$("trained").checked) errs.push("Confirm that you have completed your organization's training, or use the Individual path.");
+    if (errs.length) { $("msg").innerHTML = errs.map(PB.esc).join("<br>"); return; }
+    var ok = PB.session.set({ mode: "org", org_code: o.code, org_name: o.name, observer_id: id,
+                              trained: "org " + new Date().toISOString().slice(0, 10) });
+    if (!ok) { $("msg").textContent = "This browser does not allow saving. Turn off private browsing and try again."; return; }
+    window.location.href = "submit.html";
+  });
+})();
+</script>
+</body>
+</html>

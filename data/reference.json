@@ -163,6 +163,9 @@
     {"code": "BT", "en": "Bhutan",            "native": "འབྲུག་ཡུལ་",          "subregion": "South Asia"},
     {"code": "LK", "en": "Sri Lanka",         "native": "ශ්‍රී ලංකාව",          "subregion": "South Asia"}
   ],
+  "organizations": [
+    {"code": "DEMO-ORG", "name": "Demonstration organization (for testing only)", "country": "KR", "status": "demo"}
+  ],
   "languages": [
     {"code": "en",      "native": "English",          "en": "English",              "status": "Reference", "file": "en.html"},
     {"code": "ko",      "native": "한국어",           "en": "Korean",               "status": "Draft",     "file": "ko.html"},

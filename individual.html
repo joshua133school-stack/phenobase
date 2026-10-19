@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Individual onboarding - PhenoBase</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div id="wrap">
+<!--#masthead-->
+<div id="masthead">
+<a class="name" href="index.html">PhenoBase</a>
+<span class="tagline">Asian Farmer Phenology Database</span>
+<div id="menu"><a href="about.html">About</a><a href="how-to.html" class="here">How to Use</a><a href="index.html">PhenoBase</a></div>
+</div>
+<div id="sub"><a href="how-to.html">Overview</a> <a href="org.html">Organization</a> <b>Individual</b> <a href="guidelines/index.html">Guideline</a> <a href="stages.html">Stage codes</a> <a href="submit.html">Record</a></div>
+<!--/masthead-->
+<div id="content" class="doc">
+
+<h1>Individual</h1>
+<p class="steps" id="steps"></p>
+<noscript><p class="err">Onboarding needs JavaScript. You can read the <a href="guidelines/index.html">guideline</a> without it.</p></noscript>
+
+<div id="done" hidden>
+<p>You have completed onboarding on this device. Observer ID: <b class="mono" id="done-id"></b></p>
+<p><a href="submit.html">Continue to recording</a> &middot; <a href="#" id="restart">Start onboarding again</a></p>
+</div>
+
+<!-- step 1 -->
+<div class="step" id="step1" hidden>
+<h2>1. Start</h2>
+<table class="form">
+<tr><td class="l"><label for="cc">Country <span class="req">*</span></label></td><td><select id="cc" class="long"></select></td></tr>
+<tr><td class="l">I will observe <span class="req">*</span></td>
+    <td><label><input type="radio" name="kind" value="fruit"> fruit trees</label><br>
+        <label><input type="radio" name="kind" value="field"> rice, cereals, vegetables or other field crops</label></td></tr>
+</table>
+<p class="small">The full guideline is also available in
+<a href="guidelines/en.html">English</a> | <a href="guidelines/ko.html" lang="ko">한국어</a> |
+<a href="guidelines/ja.html">日本語</a> | <a href="guidelines/zh-hans.html">简体中文</a>.</p>
+<p><button type="button" data-next="2">Next: lessons</button> <span class="err" id="msg1"></span></p>
+</div>
+
+<!-- step 2 -->
+<div class="step" id="step2" hidden>
+<h2>2. Lessons</h2>
+
+<div class="lesson"><h3>2.1 Choose your plants</h3>
+<p id="l-plants"></p>
+<p>Observe the <b>same marked plants</b> every visit and, for trees, every year. Avoid edges, walls, sick or newly planted plants.</p></div>
+
+<div class="lesson"><h3>2.2 When to look</h3>
+<p>Every day or every second day while buds open, flowers open, ears appear and fruit ripens. Once a week at other times.
+Look at the whole tree or plot, sunny and shady sides.</p></div>
+
+<div class="lesson"><h3>2.3 Deciding the date</h3>
+<p>Record the <b>first day</b> the stage is true for your marked plants <b>as a group</b>.</p>
+<div class="tw"><table class="data">
+<tbody>
+<tr><th>First</th><td>seen on at least one marked plant</td></tr>
+<tr><th>Beginning</th><td>about 1 in 10</td></tr>
+<tr><th>Full / half</th><td>about half or more</td></tr>
+<tr><th>End</th><td>almost all</td></tr>
+</tbody></table></div>
+<p>Missed a visit? Give your best estimate, mark it <b>low</b> confidence and write the last "not yet" and first "already" dates in the notes.
+Never copy a neighbour's date.</p></div>
+
+<div class="lesson"><h3>2.4 Your core stages</h3>
+<p>Always record these. The code goes with every record.</p>
+<div class="tw" id="l-stages"></div>
+<p class="small">All stages: <a href="stages.html">Stage codes</a>.</p></div>
+
+<div class="lesson"><h3>2.5 Photos and notes</h3>
+<p>If you can, take a photo of the whole tree or plot and one close-up, from the same place each time, with no faces.
+Write frost, hail, typhoon, pruning, greenhouse or flower-induction treatments in the notes with the date.</p></div>
+
+<p><button type="button" data-next="1">Back</button> <button type="button" data-next="3">Next: quiz</button></p>
+</div>
+
+<!-- step 3 -->
+<div class="step" id="step3" hidden>
+<h2>3. Quiz</h2>
+<p>Answer all questions correctly to continue. You can try again as often as you like.</p>
+<form class="quiz" id="quiz"></form>
+<p><button type="button" data-next="2">Back to lessons</button> <button type="button" id="check">Check answers</button> <span id="msg3"></span></p>
+</div>
+
+<!-- step 4 -->
+<div class="step" id="step4" hidden>
+<h2>4. Your data</h2>
+<p><label><input type="checkbox" class="consent"> My observations are mine. I agree to share them with PhenoBase and its research partners, and I know I can ask for them to be removed.</label></p>
+<p><label><input type="checkbox" class="consent"> I understand my name is never published; I appear only as an observer ID, and my location is published to about 1 km.</label></p>
+<p><label><input type="checkbox" class="consent"> I will record only what I saw on my own marked plants.</label></p>
+<p><button type="button" data-next="3">Back</button> <button type="button" id="finish">Start recording</button> <span class="err" id="msg4"></span></p>
+</div>
+
+</div>
+<!--#footer-->
+<div id="footer">PhenoBase 0.1 (prototype) &middot; <a href="data.html#license">Licence</a> &middot; <a href="https://github.com/joshua133school-stack/phenobase/issues">Contact</a></div>
+<!--/footer-->
+</div>
+<script src="data/reference.js"></script>
+<script src="assets/pb.js"></script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var STEPS = ["Start", "Lessons", "Quiz", "Your data", "Record"];
+  var kind = "", passed = false;
+
+  var QUIZ = [
+    { q: "On your marked plants, one flower is open on one plant. All other flowers are still closed. Which stage has been reached?",
+      a: ["60 First flowers open", "65 Full flowering", "No stage yet"], ok: 0,
+      why: "'First' means seen on at least one marked plant." },
+    { q: "Half the flowers on your marked plants are open on 18 April. Plants at the field edge reached half on 15 April. Which date do you record for 65 Full flowering?",
+      a: ["15 April", "18 April", "16 April (the average)"], ok: 1,
+      why: "Record only what you saw on your marked plants." },
+    { q: "You were away from 12 to 16 April. On 11 April flowering had not started; on 17 April it was past full flowering. What do you do?",
+      a: ["Leave everything blank", "Estimate the date, mark it low confidence, and write 11 and 17 April in the notes", "Copy your neighbour's date"], ok: 1,
+      why: "An honest estimate with its uncertainty is useful; a copied date is not." },
+    { q: "Which plants do you observe?",
+      a: ["The same marked plants every visit", "Whichever plants look most advanced", "Different plants each visit"], ok: 0,
+      why: "Repeated records of the same plants are what make the data comparable." },
+    { fruit: { q: "On your marked trees nearly all petals have fallen. Which stage is this?",
+               a: ["65 Full flowering", "69 End of flowering", "87 Harvest maturity"], ok: 1,
+               why: "'End' means almost all; for flowering this is when petals have fallen." },
+      field: { q: "In your rice plot, ears have come out on about half of the plants. Which stage is this?",
+               a: ["51 Heading begins", "55 Heading date", "89 Fully ripe"], ok: 1,
+               why: "55 Heading date is about half of the plants headed; 51 is about 1 in 10." } }
+  ];
+
+  function steps(n) {
+    $("steps").innerHTML = STEPS.map(function (s, i) { return (i + 1 === n ? "<b>" : "") + (i + 1) + ". " + s + (i + 1 === n ? "</b>" : ""); }).join(" &rarr; ");
+  }
+  function show(n) {
+    if (n === 2 && !start()) return;
+    if (n === 4 && !passed) return;
+    Array.prototype.forEach.call(document.querySelectorAll(".step"), function (el) { el.hidden = el.id !== "step" + n; });
+    steps(n);
+    window.scrollTo(0, 0);
+  }
+
+  function start() {
+    var r = document.querySelector("input[name=kind]:checked");
+    if (!$("cc").value || !r) { $("msg1").textContent = "Choose your country and what you will observe."; return false; }
+    $("msg1").textContent = "";
+    if (r.value !== kind) { kind = r.value; passed = false; lessons(); quiz(); }
+    return true;
+  }
+
+  function lessons() {
+    $("l-plants").innerHTML = kind === "fruit"
+      ? "Choose <b>5 healthy trees</b> of one cultivar, of normal size and age. Tie a ribbon on each and number them 1&ndash;5."
+      : "Mark a <b>fixed plot</b> of about 10 plants (about 1 m&sup2; for rice or wheat) in the middle of the field, at least 5 steps from the edge.";
+    var scales = kind === "fruit" ? ["FRUIT_DECID", "FRUIT_EVERG"] : ["CEREAL", "ANNUAL"];
+    var h = "";
+    scales.forEach(function (k) {
+      var s = PB.ref.scales[k];
+      h += '<table class="data full"><thead><tr><th colspan="3">' + PB.esc(s.name) + "</th></tr></thead><tbody>";
+      s.stages.forEach(function (st) {
+        if (st.core) h += '<tr><td class="code"><b>' + st.code + "</b></td><td><b>" + PB.esc(st.en) + "</b></td><td>" + PB.esc(st.def) + "</td></tr>";
+      });
+      h += "</tbody></table><br>";
+    });
+    $("l-stages").innerHTML = h;
+  }
+
+  function questions() {
+    return QUIZ.map(function (q) { return q.q ? q : q[kind]; });
+  }
+  function quiz() {
+    $("quiz").innerHTML = questions().map(function (q, i) {
+      return "<p><b>" + (i + 1) + ". " + PB.esc(q.q) + "</b></p>" + q.a.map(function (a, j) {
+        return '<label><input type="radio" name="q' + i + '" value="' + j + '"> ' + PB.esc(a) + "</label>";
+      }).join("") + '<div class="why" id="why' + i + '"></div>';
+    }).join("");
+    $("msg3").textContent = "";
+  }
+  $("check").addEventListener("click", function () {
+    var qs = questions(), right = 0;
+    qs.forEach(function (q, i) {
+      var r = document.querySelector("input[name=q" + i + "]:checked"), w = $("why" + i);
+      if (r && Number(r.value) === q.ok) { right++; w.className = "why ok"; w.textContent = "Correct."; }
+      else { w.className = "why err"; w.textContent = r ? "Not quite. " + q.why : "Choose an answer."; }
+    });
+    passed = right === qs.length;
+    $("msg3").className = passed ? "ok" : "err";
+    $("msg3").textContent = right + " of " + qs.length + " correct." + (passed ? "" : " Review the lessons and try again.");
+    if (passed) show(4);
+  });
+
+  $("finish").addEventListener("click", function () {
+    var all = Array.prototype.every.call(document.querySelectorAll(".consent"), function (c) { return c.checked; });
+    if (!all) { $("msg4").textContent = "Please tick all three boxes to continue."; return; }
+    var id = "IND-" + $("cc").value + "-" + Math.random().toString(36).slice(2, 7).toUpperCase();
+    var ok = PB.session.set({ mode: "individual", observer_id: id, country_code: $("cc").value, kind: kind,
+                              trained: "PB-G-01 v0.1 quiz " + new Date().toISOString().slice(0, 10) });
+    if (!ok) { $("msg4").textContent = "This browser does not allow saving. Turn off private browsing and try again."; return; }
+    window.location.href = "submit.html";
+  });
+
+  document.addEventListener("click", function (e) {
+    var n = e.target.getAttribute && e.target.getAttribute("data-next");
+    if (n) show(Number(n));
+  });
+  $("restart").addEventListener("click", function (e) {
+    e.preventDefault(); PB.session.clear(); $("done").hidden = true; show(1);
+  });
+
+  PB.fillCountrySelect($("cc"), "", "-- choose --");
+  var s = PB.session.get();
+  if (s && s.mode === "individual") { $("done-id").textContent = s.observer_id; $("done").hidden = false; steps(5); }
+  else show(1);
+})();
+</script>
+</body>
+</html>

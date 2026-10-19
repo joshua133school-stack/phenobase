@@ -140,5 +140,26 @@
     sel.innerHTML = html;
   };
 
+  /* Participation session: how this device's observer joined (organization or individual).
+     Kept in localStorage; get() returns null when not set or when storage is blocked. */
+  var SESSION_KEY = "pb.session.v1";
+  PB.session = {
+    get: function () {
+      try { return JSON.parse(localStorage.getItem(SESSION_KEY)) || null; } catch (e) { return null; }
+    },
+    set: function (s) {
+      try { localStorage.setItem(SESSION_KEY, JSON.stringify(s)); return true; } catch (e) { return false; }
+    },
+    clear: function () {
+      try { localStorage.removeItem(SESSION_KEY); } catch (e) { /* nothing stored */ }
+    }
+  };
+  PB.org = function (code) {
+    code = String(code || "").trim().toUpperCase();
+    var list = REF.organizations || [];
+    for (var i = 0; i < list.length; i++) if (list[i].code === code) return list[i];
+    return null;
+  };
+
   window.PB = PB;
 })();

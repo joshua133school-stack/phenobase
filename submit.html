@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Submit observations - PhenoBase</title>
+<title>Record observations - PhenoBase</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -14,11 +14,21 @@
 <span class="tagline">Asian Farmer Phenology Database</span>
 <div id="menu"><a href="about.html">About</a><a href="how-to.html" class="here">How to Use</a><a href="index.html">PhenoBase</a></div>
 </div>
-<div id="sub"><a href="how-to.html">Overview</a> <a href="guidelines/index.html">Guideline</a> <a href="stages.html">Stage codes</a> <b>Submit</b></div>
+<div id="sub"><a href="how-to.html">Overview</a> <a href="org.html">Organization</a> <a href="individual.html">Individual</a> <a href="guidelines/index.html">Guideline</a> <a href="stages.html">Stage codes</a> <b>Record</b></div>
 <!--/masthead-->
 <div id="content">
 
-<h1>Submit observations</h1>
+<h1>Record observations</h1>
+<div id="gate" hidden>
+<p>Before recording, choose how you take part:</p>
+<div class="choice">
+<a href="org.html"><b>Organization</b><span>Trained by your organization: enter its code.</span></a>
+<a href="individual.html"><b>Individual</b><span>Short lesson and quiz first.</span></a>
+</div>
+</div>
+
+<div id="rec" hidden>
+<p id="who" class="small"></p>
 <div class="notice"><b>How submission works in this release.</b> The online upload server is not running yet. Observations
 you enter here are kept <b>on this device only</b>. When you have finished, press <b>Download CSV</b> and send the file to your
 national coordinator (or attach it to an issue on the <a href="https://github.com/joshua133school-stack/phenobase/issues">project tracker</a>).
@@ -31,8 +41,8 @@ Use one entry per stage. For example, full flowering and end of flowering are tw
 <fieldset><legend>1. Observer and site <span class="small muted">(kept on this device for the next entry)</span></legend>
 <table class="form">
 <tr><td class="l"><label for="observer_id">Observer ID</label></td>
-    <td><input type="text" id="observer_id" class="med" placeholder="e.g. OBS-KR-017"></td>
-    <td class="h">Given by your coordinator. Leave blank if you do not have one yet. Do not enter your name.</td></tr>
+    <td><input type="text" id="observer_id" class="med" readonly></td>
+    <td class="h">From your organization or your onboarding.</td></tr>
 <tr><td class="l"><label for="observer_role">Observer is</label></td>
     <td><select id="observer_role"><option>farmer</option><option>extension officer</option><option>researcher</option><option>student</option></select></td><td></td></tr>
 <tr><td class="l"><label for="country_code">Country <span class="req">*</span></label></td>
@@ -92,6 +102,7 @@ Use one entry per stage. For example, full flowering and end of flowering are tw
 <button type="button" id="dl">Download CSV</button>
 <button type="button" id="clear">Delete all</button>
 </p>
+</div>
 
 </div>
 <!--#footer-->

@@ -1,13 +1,26 @@
-/* Submit page: validates an observation, keeps a queue in localStorage, exports CSV. */
+/* Record page: validates an observation, keeps a queue in localStorage, exports CSV.
+   Recording is open only after the organization or individual path (PB.session). */
 (function () {
   "use strict";
   var $ = function (id) { return document.getElementById(id); };
+  var S = PB.session.get();
+  if (!S) { $("gate").hidden = false; return; }
+  $("rec").hidden = false;
+  $("who").innerHTML = (S.mode === "org"
+      ? "Organization: <b>" + PB.esc(S.org_name) + "</b> (" + PB.esc(S.org_code) + ")"
+      : "Individual observer") +
+    " &middot; Observer ID <b class=\"mono\">" + PB.esc(S.observer_id) + "</b> &middot; " +
+    '<a href="#" id="signout">Change</a>';
+  $("signout").addEventListener("click", function (e) {
+    e.preventDefault();
+    if (window.confirm("Leave this participation path? Observations already on this device are kept.")) { PB.session.clear(); window.location.reload(); }
+  });
   var QKEY = "pb.queue.v1", SKEY = "pb.site.v1";
   var SITE_FIELDS = ["observer_id", "observer_role", "country_code", "admin1", "locality", "latitude", "longitude", "elevation_m", "site_id",
                      "crop_id", "cultivar", "method", "n_plants"];
   var FIELDS = ["entry_id", "status", "country_code", "admin1", "locality", "site_id", "latitude", "longitude", "elevation_m",
                 "crop_id", "scientific_name", "cultivar", "stage_scale", "stage_code", "obs_date", "year", "doy",
-                "observer_id", "observer_role", "method", "n_plants", "confidence", "photo", "notes", "entered_at"];
+                "observer_id", "observer_role", "pathway", "org_code", "trained", "method", "n_plants", "confidence", "photo", "notes", "entered_at"];
 
   function load(key, dflt) {
     try { var v = localStorage.getItem(key); return v ? JSON.parse(v) : dflt; } catch (e) { return dflt; }
@@ -18,11 +31,12 @@
   var queue = load(QKEY, []);
   var site = load(SKEY, {});
 
-  PB.fillCountrySelect($("country_code"), site.country_code || "", "-- choose --");
+  PB.fillCountrySelect($("country_code"), site.country_code || S.country_code || "", "-- choose --");
   PB.fillCropSelect($("crop_id"), site.crop_id || "", "-- choose --");
   SITE_FIELDS.forEach(function (f) { if (site[f] !== undefined && $(f).tagName !== "SELECT") $(f).value = site[f]; });
   if (site.observer_role) $("observer_role").value = site.observer_role;
   if (site.method) $("method").value = site.method;
+  $("observer_id").value = S.observer_id;
   $("obs_date").value = today();
   $("obs_date").max = today();
 
@@ -98,6 +112,10 @@
     var errs = validate(o);
     var msg = $("msg");
     if (errs.length) { msg.className = "err"; msg.innerHTML = errs.map(PB.esc).join("<br>"); return; }
+    o.observer_id = S.observer_id;
+    o.pathway = S.mode;
+    o.org_code = S.org_code || "";
+    o.trained = S.trained || "";
     o.entry_id = "E" + Date.now().toString(36).toUpperCase();
     o.status = "SUBMITTED";
     o.entered_at = new Date().toISOString();

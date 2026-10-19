@@ -23,8 +23,8 @@ REPO = "https://github.com/joshua133school-stack/phenobase"
 MENU = [
     ("about", "about.html", "About", []),
     ("howto", "how-to.html", "How to Use",
-     [("how-to.html", "Overview"), ("guidelines/index.html", "Guideline"),
-      ("stages.html", "Stage codes"), ("submit.html", "Submit")]),
+     [("how-to.html", "Overview"), ("org.html", "Organization"), ("individual.html", "Individual"),
+      ("guidelines/index.html", "Guideline"), ("stages.html", "Stage codes"), ("submit.html", "Record")]),
     ("db", "index.html", "PhenoBase",
      [("index.html", "Overview"), ("search.html", "Search"),
       ("crops.html", "Crops"), ("data.html", "Data")]),
@@ -34,6 +34,8 @@ MENU = [
 SECTION_OF = {
     "about.html": ("about", None),
     "how-to.html": ("howto", "how-to.html"),
+    "org.html": ("howto", "org.html"),
+    "individual.html": ("howto", "individual.html"),
     "stages.html": ("howto", "stages.html"),
     "submit.html": ("howto", "submit.html"),
     "index.html": ("db", "index.html"),

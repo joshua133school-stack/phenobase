@@ -20,10 +20,12 @@ The main menu has three buttons. Each section has a short row of sub-links.
 | Menu | Path | Purpose |
 |---|---|---|
 | **About** | `about.html` | Rationale, gap analysis, network structure, roadmap, how to join |
-| **How to Use** | `how-to.html` | Steps for farmers, researchers and partners |
+| **How to Use** | `how-to.html` | Two buttons: Organization or Individual |
+| | `org.html` | Organization path: organization code + observer ID, for observers trained by their organization |
+| | `individual.html` | Individual path: start → lessons → quiz → consent, then recording |
 | | `guidelines/` | Farmer guideline PB-G-01 in `en` (reference), `ko`, `ja`, `zh-hans` (drafts) + translation status |
 | | `stages.html` | BBCH stage scales, thresholds, management events |
-| | `submit.html` | Observation entry form (offline queue on device, GPS button, CSV download) |
+| | `submit.html` | Recording form, open only after one of the two paths (offline queue, GPS button, CSV download) |
 | **PhenoBase** | `index.html` | Database overview: quick search, contents, records by country |
 | | `search.html` | Query form; record list, summary by year, summary by site with trend; CSV export |
 | | `record.html?id=…` | Single record view, same stage in other years, all stages that season |
@@ -32,7 +34,7 @@ The main menu has three buttons. Each section has a short row of sub-links.
 
 | Path | Purpose |
 |---|---|
-| `data/reference.json` | **Single source** for crops, stage scales, countries, guideline languages |
+| `data/reference.json` | **Single source** for crops, stage scales, countries, guideline languages, organization codes |
 | `data/observations.csv` | Observation records (currently **synthetic demo data**) |
 | `tools/build_data.py` | Builds `data/reference.js` and the demo observation files |
 | `tools/stamp_layout.py` | Stamps the shared masthead, menu and footer into every page |

@@ -19,7 +19,7 @@ The main menu has three buttons. Each section has a short row of sub-links.
 
 | Menu | Path | Purpose |
 |---|---|---|
-| **About** | `about.html` | Rationale, gap analysis, network structure, roadmap, how to join |
+| **About** | `about.html` | About Us (limitations, solutions, impacts), scope, network, roadmap, how to join |
 | **How to Use** | `how-to.html` | Two buttons: Organization or Individual |
 | | `org.html` | Organization path: organization code + observer ID, for observers trained by their organization |
 | | `individual.html` | Individual path: start → lessons → quiz → consent, then recording |

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About - PhenoBase</title>
+<title>About Us - PhenoBase</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -17,13 +17,13 @@
 <!--/masthead-->
 <div id="content">
 
-<h1>About PhenoBase</h1>
+<h1>About Us</h1>
 
 <div class="toc"><b>Contents</b>
 <ol>
-<li><a href="#why">Why this project</a></li>
-<li><a href="#gap">Existing networks and the gap</a></li>
-<li><a href="#aims">Aims</a></li>
+<li><a href="#limitations">Limitations</a></li>
+<li><a href="#solutions">Solutions</a></li>
+<li><a href="#impacts">Impacts</a></li>
 <li><a href="#scope">Scope</a></li>
 <li><a href="#network">Network structure</a></li>
 <li><a href="#roadmap">Roadmap</a></li>
@@ -32,35 +32,64 @@
 <li><a href="#refs">References</a></li>
 </ol></div>
 
-<h2 id="why">1. Why this project</h2>
-<p><b>Phenology</b> is the timing of recurring events in the life of a plant: bud burst, flowering, fruit ripening, leaf fall.
-These dates move with the weather and, over decades, with the climate. For a farmer they decide frost risk at flowering,
-when labour is needed, when fruit can be sold and which cultivars still suit the region.</p>
-<p>Asia produces much of the world's rice, fruit and vegetables, yet very little Asian crop phenology reaches the international
-databases used for climate and agricultural research. The farmers who see these stages every day are rarely asked to
-record them in a standard form. PhenoBase gives them that form, in their own language, and keeps the records in one
-open, comparable database.</p>
+<div class="doc">
+<p>We are developing a community-supported crop phenology observation network across Asia. Our work focuses on making
+field observations more accessible and consistent, particularly in agricultural communities that have limited involvement
+in existing scientific reporting programs.</p>
+<p>Rather than establishing a separate research database, we aim to supply existing projects with reliable,
+high-resolution observations and the raw data behind them. Our own database serves primarily to organize, verify, and
+distribute contributed records.</p>
 
-<h2 id="gap">2. Existing networks and the gap</h2>
-<div class="tw"><table class="data full">
-<thead><tr><th>Network</th><th>Region</th><th>Main focus</th><th>Cultivated fruit &amp; field crops in Asia</th></tr></thead>
-<tbody>
-<tr><td>USA National Phenology Network (Nature's Notebook)</td><td>United States</td><td>Wild plants and animals, volunteer observers</td><td>Not covered</td></tr>
-<tr><td>Pan European Phenology database (PEP725)</td><td>Europe</td><td>Plants, including some crops, mostly from national weather services</td><td>Not covered</td></tr>
-<tr><td>GBIF</td><td>Global</td><td>Species occurrence records (where and when a species was seen)</td><td>Few records, not structured as stages</td></tr>
-<tr><td>National phenology programmes in Asia, including Korea</td><td>National</td><td>Mainly wild species, animals and insects; some ornamental trees</td><td>Few cultivated fruit or field crops</td></tr>
-<tr><td><b>PhenoBase</b></td><td>East, Southeast and South Asia</td><td>Fruit and field crops, recorded by the farmers who grow them</td><td><b>Primary focus</b></td></tr>
-</tbody></table></div>
-<p class="small muted">Summary prepared by the project team from public descriptions of each network. Corrections are welcome.</p>
+<h2 id="limitations">1. Limitations</h2>
+<p><b>Limited participation and coverage.</b> Many agricultural communities remain underrepresented in organized phenology
+reporting. Existing platforms may be unfamiliar or difficult to access, particularly for older growers and people in rural
+areas. Language barriers and limited opportunities for training can make participation even less practical.</p>
+<p><b>Inconsistent reporting.</b> Phenological observations collected by different contributors can be difficult to compare.
+Growth stages may be interpreted differently, and records often lack information about the crop variety or cultivation
+conditions. Isolated observations also provide less information than repeated records of the same plants throughout a
+growing season.</p>
+<p><b>Loss of original information.</b> Phenology data are often distributed as processed measurements, estimated transition
+dates, or aggregated results. These outputs are useful, but without the underlying observations, researchers may be unable
+to verify classifications, assess uncertainty, or reprocess records using different methods. Original photographs and
+environmental measurements are especially valuable as image-analysis methods and phenological models improve.</p>
+<p><b>Environmental uncertainty.</b> Weather records from distant stations or coarse-resolution climate products may not
+accurately represent conditions at an individual growing site. This becomes particularly important when comparing crop
+development across different cultivation environments.</p>
 
-<h2 id="aims">3. Aims</h2>
-<ol>
-<li>Build a long-term, open record of fruit and field crop phenology across Asia, observed by farmers.</li>
-<li>Publish a simple, illustrated <a href="guidelines/index.html">observation guideline</a> in the main languages of the region.</li>
-<li>Use international BBCH stage codes so that Asian records can be combined with European and American data.</li>
-<li>Return value to farmers: each farmer receives their own record each season, compared with their region.</li>
-<li>Provide data for frost-risk warnings, harvest planning, cultivar choice and climate-change research.</li>
-</ol>
+<h2 id="solutions">2. Solutions</h2>
+<p>Our first priority is outreach. We aim to work directly with growers, particularly in rural communities, using
+local-language guidance and practical assistance to introduce phenology reporting. Participation should not require
+previous scientific experience.</p>
+<p>We are developing crop-specific observation manuals and a simplified recording application, alongside custom scanning
+and photographic tools that contributors will be able to request. These are intended to reduce differences in how
+observations are made and recorded.</p>
+<p>Contributors will be encouraged to monitor the same plants or plots repeatedly throughout a cultivation cycle. Each
+record will identify the crop and its growth stage, supported by dated photographs and information about the cultivar and
+growing conditions. Observation procedures will follow standardized definitions wherever appropriate.</p>
+<p>Preserving and sharing raw data is a central part of our approach. Original photographs, field observations, and
+available environmental measurements will be retained alongside standardized records. Corrections and derived measurements
+will remain distinguishable from the original submissions, allowing researchers to revisit the source material instead of
+relying solely on processed results.</p>
+<p>We also aim to improve the environmental context of observations by incorporating reliable local weather measurements
+where available. Other meteorological sources will be documented so that researchers can account for differences in
+spatial resolution and measurement uncertainty.</p>
+<p>Our internal database will support quality checks and data exchange with established research platforms. We intend to
+explore integration with iNaturalist where suitable and develop data-sharing arrangements with projects such as Phenobase.
+These platforms can apply more advanced processing methods, including computer vision and neural networks, to the records
+we help collect.</p>
+
+<h2 id="impacts">3. Impacts</h2>
+<p>We hope to increase the number of growers contributing to phenology research, especially in regions where continuous
+crop observations are scarce.</p>
+<p>Regular monitoring of identified plants should provide more useful information about the timing of developmental changes
+than isolated reports. Consistent photographic documentation and access to original observations will also allow external
+researchers to check results and apply new analytical methods without repeating the initial fieldwork.</p>
+<p>By maintaining the connection between crop development and the conditions under which it was observed, our records may
+support more detailed investigations of agricultural responses to changing climates.</p>
+<p>Our role is primarily to improve the collection of field data and make it available to researchers. We want existing
+phenology projects to benefit from observations that would otherwise remain undocumented, while ensuring that the growers
+who contribute them can also access and use the resulting information.</p>
+</div>
 
 <h2 id="scope">4. Scope</h2>
 <table class="rec"><tbody>
@@ -128,7 +157,6 @@ Use the labels <span class="mono">join</span>, <span class="mono">translation</s
 <ul class="small">
 <li>Meier, U. (ed.) (2018). <i>Growth stages of mono- and dicotyledonous plants. BBCH Monograph.</i> Julius K&uuml;hn-Institut, Quedlinburg.</li>
 <li>Schwartz, M.D. (ed.) (2013). <i>Phenology: An Integrative Environmental Science.</i> 2nd ed. Springer, Dordrecht.</li>
-<li>Templ, B. et al. (2018). Pan European Phenological database (PEP725): a single point of access for European data. <i>International Journal of Biometeorology</i> 62: 1109&ndash;1113.</li>
 <li>Wilkinson, M.D. et al. (2016). The FAIR Guiding Principles for scientific data management and stewardship. <i>Scientific Data</i> 3: 160018.</li>
 <li>Carroll, S.R. et al. (2020). The CARE Principles for Indigenous Data Governance. <i>Data Science Journal</i> 19: 43.</li>
 </ul>

@@ -41,6 +41,7 @@ The main menu has four buttons. Each section has a short row of sub-links.
 | `data/reference.json` | **Single source** for crops, stage scales, countries, guideline languages, organization codes |
 | `data/observations.csv` | Observation records (currently **synthetic demo data**) |
 | `tools/build_data.py` | Builds `data/reference.js` and the demo observation files |
+| `assets/notice.js` | Site-wide announcement popup, shown once per visitor. Edit `ID`/`TEXT` to post a new one; set `ID` to `""` to turn it off |
 | `tools/stamp_layout.py` | Stamps the shared masthead, menu and footer into every page |
 
 ## Working on the site

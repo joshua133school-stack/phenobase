@@ -74,7 +74,8 @@ def masthead(p, rel):
 def footer(p):
     return ('<!--#footer-->\n<div id="footer">phenorelay %s &middot; '
             '<a href="%sdata.html#license">Licence</a> &middot; '
-            '<a href="%s/issues">Contact</a></div>\n<!--/footer-->') % (RELEASE, p, REPO)
+            '<a href="%s/issues">Contact</a></div>\n'
+            '<script src="%sassets/notice.js"></script>\n<!--/footer-->') % (RELEASE, p, REPO, p)
 
 
 def langbar(rel):

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build the static data files used by the PhenoBase website.
+"""Build the static data files used by the phenorelay website.
 
   data/reference.json  (hand-edited source)  ->  data/reference.js
   DEMO_PROGRAMS below   (synthetic)           ->  data/observations.csv
@@ -143,7 +143,7 @@ def build_demo(ref):
                 seq[cc] = seq.get(cc, 0) + 1
                 recent = year == CUTOFF.year
                 rows.append({
-                    "record_id": "PB-%s-%06d" % (cc, seq[cc]),
+                    "record_id": "PR-%s-%06d" % (cc, seq[cc]),
                     "status": "DEMO",
                     "country_code": cc,
                     "admin1": admin1,

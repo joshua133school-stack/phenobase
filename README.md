@@ -1,10 +1,13 @@
-# PhenoBase: Asian Farmer Phenology Database
+# phenorelay: crop phenology observation network for Asia
 
-A farmer-run database of crop phenology (bud burst, flowering, ripening, heading, harvest) for **fruit crops and
-field crops across East, Southeast and South Asia**, together with a farmer observation guideline in Asian languages.
+A community-supported network for observing crop phenology (bud burst, flowering, ripening, heading, harvest) of
+**fruit crops and field crops across East, Southeast and South Asia**, with farmer observation guidelines in Asian
+languages.
 
-International phenology databases hold little Asian data, and national programmes in the region (including
-Korea's) mainly cover wild species, animals and insects. PhenoBase fills that gap for cultivated crops.
+phenorelay does not aim to be a separate research database. It helps growers, especially in rural communities that
+take little part in existing reporting programmes, record consistent observations. It then verifies those records and
+relays them, together with the raw data behind them, to established research platforms. The website's own database
+organizes, checks and distributes contributed records.
 
 ## Design principle
 
@@ -23,10 +26,10 @@ The main menu has three buttons. Each section has a short row of sub-links.
 | **How to Use** | `how-to.html` | Two buttons: Organization or Individual |
 | | `org.html` | Organization path: organization code + observer ID, for observers trained by their organization |
 | | `individual.html` | Individual path: start → lessons → quiz → consent, then recording |
-| | `guidelines/` | Farmer guideline PB-G-01 in `en` (reference), `ko`, `ja`, `zh-hans` (drafts) + translation status |
+| | `guidelines/` | Farmer guideline PR-G-01 in `en` (reference), `ko`, `ja`, `zh-hans` (drafts) + translation status |
 | | `stages.html` | BBCH stage scales, thresholds, management events |
 | | `submit.html` | Recording form, open only after one of the two paths (offline queue, GPS button, CSV download) |
-| **PhenoBase** | `index.html` | Database overview: quick search, contents, records by country |
+| **phenorelay** | `index.html` | Database overview: quick search, contents, records by country |
 | | `search.html` | Query form; record list, summary by year, summary by site with trend; CSV export |
 | | `record.html?id=…` | Single record view, same stage in other years, all stages that season |
 | | `crops.html` | Crop reference list (EN / KO / JA / ZH names, scientific name, stage scale) |

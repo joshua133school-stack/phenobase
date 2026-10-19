@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Record - PhenoBase</title>
+<title>Record - phenorelay</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <div id="wrap">
 <!--#masthead-->
 <div id="masthead">
-<a class="name" href="index.html">PhenoBase</a>
-<span class="tagline">Asian Farmer Phenology Database</span>
-<div id="menu"><a href="about.html">About</a><a href="how-to.html">How to Use</a><a href="index.html" class="here">PhenoBase</a></div>
+<a class="name" href="index.html">phenorelay</a>
+<span class="tagline">crop phenology observation network for Asia</span>
+<div id="menu"><a href="about.html">About</a><a href="how-to.html">How to Use</a><a href="index.html" class="here">phenorelay</a></div>
 </div>
 <div id="sub"><a href="index.html">Overview</a> <b>Search</b> <a href="crops.html">Crops</a> <a href="data.html">Data</a></div>
 <!--/masthead-->
@@ -20,7 +20,7 @@
 <div id="out"><noscript><p class="err">Record pages need JavaScript.</p></noscript></div>
 </div>
 <!--#footer-->
-<div id="footer">PhenoBase 0.1 (prototype) &middot; <a href="data.html#license">Licence</a> &middot; <a href="https://github.com/joshua133school-stack/phenobase/issues">Contact</a></div>
+<div id="footer">phenorelay 0.1 (prototype) &middot; <a href="data.html#license">Licence</a> &middot; <a href="https://github.com/joshua133school-stack/phenobase/issues">Contact</a></div>
 <!--/footer-->
 </div>
 <script src="data/reference.js"></script>
@@ -36,7 +36,7 @@
     out.innerHTML = '<h1>Record not found</h1><p>No record with ID <code>' + e(id) + '</code>. <a href="search.html">Search records</a>.</p>';
     return;
   }
-  document.title = r.record_id + " - PhenoBase";
+  document.title = r.record_id + " - phenorelay";
   var c = PB.crop[r.crop_id] || {}, st = PB.stage(r.stage_scale, r.stage_code) || {}, cc = PB.country[r.country_code] || {};
   var sc = PB.ref.scales[r.stage_scale] || {};
   function row(k, v) { return "<tr><th>" + k + "</th><td>" + v + "</td></tr>"; }
@@ -99,9 +99,9 @@
   });
   h += "</tbody></table></div>";
 
-  h += "<h2>Cite this record</h2><pre>PhenoBase (" + (window.PB_OBS.generated || "").slice(0, 4) + "). Record " + e(r.record_id) +
+  h += "<h2>Cite this record</h2><pre>phenorelay (" + (window.PB_OBS.generated || "").slice(0, 4) + "). Record " + e(r.record_id) +
     ". " + e(c.en) + " (" + e(r.cultivar) + "), BBCH " + r.stage_code + ", " + r.obs_date + ", " + e(r.locality) + ", " + e(r.country_code) +
-    ".\nPhenoBase: Asian Farmer Phenology Database, release " + e(window.PB_OBS.generated) + ".</pre>";
+    ".\nphenorelay: crop phenology observation network for Asia, release " + e(window.PB_OBS.generated) + ".</pre>";
   out.innerHTML = h;
 })();
 </script>

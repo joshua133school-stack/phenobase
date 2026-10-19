@@ -25,7 +25,7 @@ MENU = [
     ("howto", "how-to.html", "How to Use",
      [("how-to.html", "Overview"), ("org.html", "Organization"), ("individual.html", "Individual"),
       ("guidelines/index.html", "Guideline"), ("stages.html", "Stage codes"), ("submit.html", "Record")]),
-    ("db", "index.html", "PhenoBase",
+    ("db", "index.html", "phenorelay",
      [("index.html", "Overview"), ("search.html", "Search"),
       ("crops.html", "Crops"), ("data.html", "Data")]),
 ]
@@ -64,13 +64,13 @@ def masthead(p, rel):
             subnav = '\n<div id="sub">' + " ".join(
                 ('<b>%s</b>' % l) if h == sub else '<a href="%s%s">%s</a>' % (p, h, l) for h, l in subs) + "</div>"
     return ('<!--#masthead-->\n<div id="masthead">\n'
-            '<a class="name" href="%sindex.html">PhenoBase</a>\n'
-            '<span class="tagline">Asian Farmer Phenology Database</span>\n'
+            '<a class="name" href="%sindex.html">phenorelay</a>\n'
+            '<span class="tagline">crop phenology observation network for Asia</span>\n'
             '<div id="menu">%s</div>\n</div>%s\n<!--/masthead-->') % (p, "".join(buttons), subnav)
 
 
 def footer(p):
-    return ('<!--#footer-->\n<div id="footer">PhenoBase %s &middot; '
+    return ('<!--#footer-->\n<div id="footer">phenorelay %s &middot; '
             '<a href="%sdata.html#license">Licence</a> &middot; '
             '<a href="%s/issues">Contact</a></div>\n<!--/footer-->') % (RELEASE, p, REPO)
 

@@ -102,7 +102,7 @@
       o.stage_label_en = PB.stageLabel(r.stage_scale, r.stage_code);
       return o;
     });
-    PB.download("phenobase_query_" + new Date().toISOString().slice(0, 10) + ".csv",
+    PB.download("phenorelay_query_" + new Date().toISOString().slice(0, 10) + ".csv",
       PB.toCSV(fields.concat(["crop_name_en", "stage_label_en"]), objs));
   });
 

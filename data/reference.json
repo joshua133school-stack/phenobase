@@ -1,5 +1,5 @@
 {
-  "_comment": "PhenoBase reference tables. Single source of truth for crops, stage scales, countries and guideline languages. Run tools/build_data.py after editing to regenerate data/reference.js.",
+  "_comment": "phenorelay reference tables. Single source of truth for crops, stage scales, countries and guideline languages. Run tools/build_data.py after editing to regenerate data/reference.js.",
   "version": "0.1",
   "scales": {
     "FRUIT_DECID": {

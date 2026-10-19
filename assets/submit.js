@@ -155,7 +155,7 @@
   });
   $("dl").addEventListener("click", function () {
     if (!queue.length) { window.alert("There are no observations to download."); return; }
-    PB.download("phenobase_submission_" + today() + ".csv", PB.toCSV(FIELDS, queue));
+    PB.download("phenorelay_submission_" + today() + ".csv", PB.toCSV(FIELDS, queue));
   });
   $("clear").addEventListener("click", function () {
     if (!queue.length) return;

@@ -1,4 +1,4 @@
-/* PhenoBase shared helpers. Requires data/reference.js (window.PB_REF).
+/* phenorelay shared helpers. Requires data/reference.js (window.PB_REF).
    Pages that list observations also load data/observations.js (window.PB_OBS). */
 (function () {
   "use strict";

@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Individual onboarding - PhenoBase</title>
+<title>Individual onboarding - phenorelay</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <div id="wrap">
 <!--#masthead-->
 <div id="masthead">
-<a class="name" href="index.html">PhenoBase</a>
-<span class="tagline">Asian Farmer Phenology Database</span>
-<div id="menu"><a href="about.html">About</a><a href="how-to.html" class="here">How to Use</a><a href="index.html">PhenoBase</a></div>
+<a class="name" href="index.html">phenorelay</a>
+<span class="tagline">crop phenology observation network for Asia</span>
+<div id="menu"><a href="about.html">About</a><a href="how-to.html" class="here">How to Use</a><a href="index.html">phenorelay</a></div>
 </div>
 <div id="sub"><a href="how-to.html">Overview</a> <a href="org.html">Organization</a> <b>Individual</b> <a href="guidelines/index.html">Guideline</a> <a href="stages.html">Stage codes</a> <a href="submit.html">Record</a></div>
 <!--/masthead-->
@@ -89,7 +89,7 @@ Write frost, hail, typhoon, pruning, greenhouse or flower-induction treatments i
 <!-- step 4 -->
 <div class="step" id="step4" hidden>
 <h2>4. Your data</h2>
-<p><label><input type="checkbox" class="consent"> My observations are mine. I agree to share them with PhenoBase and its research partners, and I know I can ask for them to be removed.</label></p>
+<p><label><input type="checkbox" class="consent"> My observations are mine. I agree to share them with phenorelay and its research partners, and I know I can ask for them to be removed.</label></p>
 <p><label><input type="checkbox" class="consent"> I understand my name is never published; I appear only as an observer ID, and my location is published to about 1 km.</label></p>
 <p><label><input type="checkbox" class="consent"> I will record only what I saw on my own marked plants.</label></p>
 <p><button type="button" data-next="3">Back</button> <button type="button" id="finish">Start recording</button> <span class="err" id="msg4"></span></p>
@@ -97,7 +97,7 @@ Write frost, hail, typhoon, pruning, greenhouse or flower-induction treatments i
 
 </div>
 <!--#footer-->
-<div id="footer">PhenoBase 0.1 (prototype) &middot; <a href="data.html#license">Licence</a> &middot; <a href="https://github.com/joshua133school-stack/phenobase/issues">Contact</a></div>
+<div id="footer">phenorelay 0.1 (prototype) &middot; <a href="data.html#license">Licence</a> &middot; <a href="https://github.com/joshua133school-stack/phenobase/issues">Contact</a></div>
 <!--/footer-->
 </div>
 <script src="data/reference.js"></script>
@@ -195,7 +195,7 @@ Write frost, hail, typhoon, pruning, greenhouse or flower-induction treatments i
     if (!all) { $("msg4").textContent = "Please tick all three boxes to continue."; return; }
     var id = "IND-" + $("cc").value + "-" + Math.random().toString(36).slice(2, 7).toUpperCase();
     var ok = PB.session.set({ mode: "individual", observer_id: id, country_code: $("cc").value, kind: kind,
-                              trained: "PB-G-01 v0.1 quiz " + new Date().toISOString().slice(0, 10) });
+                              trained: "PR-G-01 v0.1 quiz " + new Date().toISOString().slice(0, 10) });
     if (!ok) { $("msg4").textContent = "This browser does not allow saving. Turn off private browsing and try again."; return; }
     window.location.href = "submit.html";
   });

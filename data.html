@@ -3,16 +3,16 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Data &amp; standards - PhenoBase</title>
+<title>Data &amp; standards - phenorelay</title>
 <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 <div id="wrap">
 <!--#masthead-->
 <div id="masthead">
-<a class="name" href="index.html">PhenoBase</a>
-<span class="tagline">Asian Farmer Phenology Database</span>
-<div id="menu"><a href="about.html">About</a><a href="how-to.html">How to Use</a><a href="index.html" class="here">PhenoBase</a></div>
+<a class="name" href="index.html">phenorelay</a>
+<span class="tagline">crop phenology observation network for Asia</span>
+<div id="menu"><a href="about.html">About</a><a href="how-to.html">How to Use</a><a href="index.html" class="here">phenorelay</a></div>
 </div>
 <div id="sub"><a href="index.html">Overview</a> <a href="search.html">Search</a> <a href="crops.html">Crops</a> <b>Data</b></div>
 <!--/masthead-->
@@ -47,7 +47,7 @@
 <div class="tw"><table class="data full">
 <thead><tr><th class="num">#</th><th>Field</th><th>Type</th><th>Description</th><th>Example</th></tr></thead>
 <tbody>
-<tr><td class="num">1</td><td class="code">record_id</td><td>text</td><td>Permanent record identifier: PB-&lt;country&gt;-&lt;6 digits&gt;. Never reused.</td><td class="code">PB-KR-000123</td></tr>
+<tr><td class="num">1</td><td class="code">record_id</td><td>text</td><td>Permanent record identifier: PR-&lt;country&gt;-&lt;6 digits&gt;. Never reused.</td><td class="code">PR-KR-000123</td></tr>
 <tr><td class="num">2</td><td class="code">status</td><td>code</td><td>DEMO (synthetic), SUBMITTED (received, not yet loaded), PUBLISHED</td><td class="code">PUBLISHED</td></tr>
 <tr><td class="num">3</td><td class="code">country_code</td><td>ISO 3166-1 alpha-2</td><td>Country of the site</td><td class="code">KR</td></tr>
 <tr><td class="num">4</td><td class="code">admin1</td><td>text</td><td>Province, state or equivalent</td><td class="code">Gyeongsangbuk-do</td></tr>
@@ -84,7 +84,7 @@
 carried in <span class="mono">reproductiveCondition</span> for flowering and fruiting stages, and in
 <span class="mono">dynamicProperties</span> for all stages. Mapping to the Plant Phenology Ontology is planned.</p>
 <div class="tw"><table class="data">
-<thead><tr><th>PhenoBase field</th><th>Darwin Core term</th></tr></thead>
+<thead><tr><th>phenorelay field</th><th>Darwin Core term</th></tr></thead>
 <tbody>
 <tr><td class="code">record_id</td><td class="code">occurrenceID</td></tr>
 <tr><td class="code">obs_date / year / doy</td><td class="code">eventDate / year / startDayOfYear</td></tr>
@@ -114,7 +114,7 @@ carried in <span class="mono">reproductiveCondition</span> for flowering and fru
 
 <h2 id="privacy">5. Observer privacy and data ownership</h2>
 <ul>
-<li>Farmers <b>own their observations</b>. They choose to share them with PhenoBase and can withdraw their records at any time through their national node.</li>
+<li>Farmers <b>own their observations</b>. They choose to share them with phenorelay and can withdraw their records at any time through their national node.</li>
 <li>Observer names, phone numbers and exact farm addresses are held only by the national node and are <b>never published</b>. Published records carry a pseudonymous observer ID.</li>
 <li>Published coordinates are rounded to about 1 km.</li>
 <li>Each participating farmer receives their own records back every season, with the regional average for comparison.</li>
@@ -126,7 +126,7 @@ carried in <span class="mono">reproductiveCondition</span> for flowering and fru
 <p><b>Proposed licence:</b> observation data <b>CC BY 4.0</b> (reuse permitted with attribution); guideline texts <b>CC BY 4.0</b>;
 website source code under an open-source licence to be confirmed by the project board.</p>
 <p><b>Cite the database as:</b></p>
-<pre>PhenoBase: Asian Farmer Phenology Database for Fruit and Field Crops (year).
+<pre>phenorelay: crop phenology observation network for Asia (year).
 Release &lt;version&gt;. https://github.com/joshua133school-stack/phenobase. Accessed &lt;date&gt;.</pre>
 <p>Cite single records by their record ID; each <a href="search.html">record page</a> shows a citation line.</p>
 
@@ -139,7 +139,7 @@ Release &lt;version&gt;. https://github.com/joshua133school-stack/phenobase. Acc
 
 </div>
 <!--#footer-->
-<div id="footer">PhenoBase 0.1 (prototype) &middot; <a href="data.html#license">Licence</a> &middot; <a href="https://github.com/joshua133school-stack/phenobase/issues">Contact</a></div>
+<div id="footer">phenorelay 0.1 (prototype) &middot; <a href="data.html#license">Licence</a> &middot; <a href="https://github.com/joshua133school-stack/phenobase/issues">Contact</a></div>
 <!--/footer-->
 </div>
 </body>

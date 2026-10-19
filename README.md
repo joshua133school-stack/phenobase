@@ -18,10 +18,11 @@ from disk. Pages work on phones, so farmers can use them in the field.
 
 ## Contents
 
-The main menu has three buttons. Each section has a short row of sub-links.
+The main menu has four buttons. Each section has a short row of sub-links.
 
 | Menu | Path | Purpose |
 |---|---|---|
+| **Team** | `team.html` | Core team, advisors, partner organizations, contributors |
 | **About** | `about.html` | About Us (limitations, solutions, impacts), scope, network, roadmap, how to join |
 | **How to Use** | `how-to.html` | Two buttons: Organization or Individual |
 | | `org.html` | Organization path: organization code + observer ID, for observers trained by their organization |

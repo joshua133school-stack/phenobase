@@ -21,6 +21,7 @@ REPO = "https://github.com/joshua133school-stack/phenobase"
 
 # main menu: (section key, landing page, label, sub-pages)
 MENU = [
+    ("team", "team.html", "Team", []),
     ("about", "about.html", "About", []),
     ("howto", "how-to.html", "How to Use",
      [("how-to.html", "Overview"), ("org.html", "Organization"), ("individual.html", "Individual"),
@@ -32,6 +33,7 @@ MENU = [
 
 # page -> (section, sub-page it belongs under)
 SECTION_OF = {
+    "team.html": ("team", None),
     "about.html": ("about", None),
     "how-to.html": ("howto", "how-to.html"),
     "org.html": ("howto", "org.html"),
